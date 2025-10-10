@@ -1,47 +1,52 @@
+{{-- 1. Dizemos qual "planta de casa" usar. Esta deve ser a primeira linha. --}}
 @extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veículos</title>
-</head>
-<body>
+{{-- 2. (Opcional) Podemos definir o título específico desta página --}}
+@section('title', 'Listagem de Veículos')
+
+{{-- 3. Agora, definimos a "mobília" que vai dentro do @yield('content') --}}
+@section('content')
+
     @if(session('sucesso'))
         <div class="alert alert-success">
             {{ session('sucesso') }}
         </div>
     @endif
 
-    <button><a href="home">Voltar</a></button>
-    <h1>Listagem de Veículos</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Listagem de Veículos</h1>
+        <a href="{{ route('veiculos.create') }}" class="btn btn-primary">Adicionar Veículo</a>
+    </div>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Marca</th>
-                <th>Modelo</th>
-                <th>Placa</th>
-                <th>Ano</th>
-                <th>Cor</th>
-                <td>Status</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($veiculos as $veiculo)
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
                 <tr>
-                    <td>{{ $veiculo->marca }}</td>
-                    <td>{{ $veiculo->modelo }}</td>
-                    <td>{{ $veiculo->placa }}</td>
-                    <td>{{ $veiculo->ano }}</td>
-                    <td>{{ $veiculo->cor }}</td>
-                    <td>{{ $veiculo->status }}</td>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Placa</th>
+                    <th>Ano</th>
+                    <th>Cor</th>
+                    <th>Status</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse($veiculos as $veiculo)
+                    <tr>
+                        <td>{{ $veiculo->marca }}</td>
+                        <td>{{ $veiculo->modelo }}</td>
+                        <td>{{ $veiculo->placa }}</td>
+                        <td>{{ $veiculo->ano }}</td>
+                        <td>{{ $veiculo->cor }}</td>
+                        <td>{{ $veiculo->status }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">Nenhum veículo cadastrado.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 
-    <button><a href="/veiculos/create">Adicionar Veículos</a></button>
-</body>
-</html>
+@endsection
