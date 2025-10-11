@@ -12,10 +12,6 @@ class VeiculoController extends Controller
         return view('veiculos', ['veiculos' => $veiculos]);
     }
 
-    public function create(){
-        return view('veiculos.create');
-    }
-
     public function store(Request $request){
         $dadosValidados = $request->validate([
             'marca' => 'required|string|max:100',

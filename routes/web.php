@@ -14,15 +14,11 @@ use App\Http\Controllers\VeiculoController;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home.index');
 
 Route::get('/veiculos', [VeiculoController::class, 'index'])->name('veiculos.index');
-
-Route::get('/veiculos/create', function () {
-    return view('veiculos.create');
-})->name('veiculos.create');
 
 Route::get('/clientes', function () {
     return view('clientes');

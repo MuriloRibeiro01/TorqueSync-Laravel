@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'TorqueSync')</title>
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
-    {{-- O @vite vai carregar o Bootstrap CSS e JS que o Laravel já tem --}}
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- O CSS pode ficar aqui no head, vamos separar para garantir --}}
+    @vite(['resources/css/app.scss'])
+
+    <div class="container p-0 m-0" style="max-width: 100%;">
+        <!-- Barra de navegação -->
+        <img src="Logo Torquesync.jpg" class="m-3" id="logoTS" alt="">
+    </div>
 </head>
-<body class="bg-light"> {{-- Um fundo cinza claro para não cansar a vista --}}
+<body class="bg-dark">
 
-    {{-- Um container para centralizar e dar um respiro para o conteúdo --}}
     <div class="container mt-5">
-        @yield('content') {{-- O conteúdo de cada página será injetado aqui --}}
+        @yield('content')
     </div>
 
+    {{-- O JAVASCRIPT VEM AQUI, NO FINAL! --}}
+    @vite(['resources/js/app.js'])
 </body>
 </html>
