@@ -38,6 +38,21 @@
                         <td>{{ $veiculo->ano }}</td>
                         <td>{{ $veiculo->cor }}</td>
                         <td>{{ $veiculo->status }}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-info"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editarVeiculoModal"
+                                    data-update-url="{{ route('veiculos.update', $veiculo->id) }}"
+                                    data-fetch-url="{{ route('veiculos.show', $veiculo->id) }}">
+                                Editar
+                            </button>
+
+                            <form action="{{ Route('veiculos.destroy', $veiculo->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que quer exluir este veículo?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            </form>
+                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -51,12 +66,12 @@
 
     <!-- MODAL DE FORMULÁRIO DE CADASTRO DOS VEÍCULOS -->
 
-        <div class="modal" id="adicionarVeiculoModal" tabindex="-1" aria-labelledby="adicionarVeiculoModalLabel" aria-hidden="true">
+        <div class="modal fade " id="adicionarVeiculoModal" tabindex="-1" aria-labelledby="adicionarVeiculoModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Adicionar Veículo</h5>
-                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('veiculos.store') }}" method="POST">
@@ -89,6 +104,76 @@
         </div>
     </div>
 
-    
+    <div class="modal fade" id="editarVeiculoModal" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="tituloModalEditVeiculo">Editar Veículo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="formEditVeiculo" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-3">
+                            <label for="marcaEdit" class="form-label">Marca</label>
+                            <input type="text" class="form-control mb-3" id="marcaEdit" name="marca">
+                        </div>
+                        <div class="mb-3">
+                            <label for="modeloEdit" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="modeloEdit" name="modelo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="anoEdit" class="form-label">Ano</label>
+                            <input type="number" class="form-control" id="anoEdit" name="ano">
+                        </div>
+                        <div class="mb-3">
+                            <label for="placaEdit" class="form-label">Placa</label>
+                            <input type="text" class="form-control" id="placaEdit" name="placa" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="corEdit" class="form-label">Cor</label>
+                            <input type="text" class="form-control" id="corEdit" name="cor">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
 
 @endsection
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var editarVeiculoModal = document.getElementById('editarVeiculoModal');
+    var formEditVeiculo = document.getElementById('formEditVeiculo');
+
+    if (editarVeiculoModal) {
+        editarVeiculoModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget;
+            var fetchUrl = button.getAttribute('data-fetch-url');
+            var updateUrl = button.getAttribute('data-update-url');
+
+            // Set form action
+            formEditVeiculo.action = updateUrl;
+
+            // Fetch vehicle data and fill fields
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('marcaEdit').value = data.marca || '';
+                    document.getElementById('modeloEdit').value = data.modelo || '';
+                    document.getElementById('anoEdit').value = data.ano || '';
+                    document.getElementById('placaEdit').value = data.placa || '';
+                    document.getElementById('corEdit').value = data.cor || '';
+                    document.getElementById('statusEdit').value = data.status || '';
+                });
+        });
+    }
+});
+</script>
+
+    
+

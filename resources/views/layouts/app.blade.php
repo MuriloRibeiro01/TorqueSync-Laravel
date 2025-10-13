@@ -22,5 +22,7 @@
 
     {{-- O JAVASCRIPT VEM AQUI, NO FINAL! --}}
     @vite(['resources/js/app.js'])
+
+    @stack('scripts')
 </body>
 </html>

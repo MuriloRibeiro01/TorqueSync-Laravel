@@ -30,3 +30,7 @@ Route::get('/clientes/create', function () {
 
 // Rota para armazenar dados do veículo
 Route::post('/veiculos', [VeiculoController::class, 'store'])->name('veiculos.store');
+
+Route::put('/veiculos/{veiculo}', [VeiculoController::class, 'update'])->name('veiculos.update');
+Route::get('/veiculos/{veiculo}', [VeiculoController::class, 'show'])->name('veiculos.show');
+Route::delete('/veiculos/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
