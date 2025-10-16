@@ -14,7 +14,7 @@
     @endif
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Veículos</h1>
+        <h1 class="text-light">Veículos</h1>
     </div>
 
     <div class="table-responsive">

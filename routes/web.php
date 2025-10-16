@@ -14,11 +14,8 @@ use App\Http\Controllers\VeiculoController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home.index');
-
-Route::get('/veiculos', [VeiculoController::class, 'index'])->name('veiculos.index');
+// Rotas para veículos
+Route::get('/', [VeiculoController::class, 'index'])->name('home.index');
 
 Route::get('/clientes', function () {
     return view('clientes');

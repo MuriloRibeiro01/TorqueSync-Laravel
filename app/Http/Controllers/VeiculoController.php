@@ -13,7 +13,7 @@ class VeiculoController extends Controller
 
     public function index(){ 
         $veiculos = Veiculo::all();
-        return view('veiculos', ['veiculos' => $veiculos]);
+        return view('home', ['veiculos' => $veiculos]);
     }
 
     public function store(Request $request){
@@ -25,12 +25,12 @@ class VeiculoController extends Controller
             'cor' => 'required|string|max:50'
         ]);
         Veiculo::create($dadosValidados);
-        return redirect()->route('veiculos.index')->with('sucesso', 'Veículo cadastrado com sucesso!');
+        return redirect()->route('home.index')->with('sucesso', 'Veículo cadastrado com sucesso!');
     }
 
     public function destroy(Veiculo $veiculo){
         $veiculo->delete();
-        return redirect()->route('veiculos.index')->with('sucesso', 'Veículo excluído com sucesso!');
+        return redirect()->route('home.index')->with('sucesso', 'Veículo excluído com sucesso!');
     }
 
     public function update(Veiculo $veiculo, Request $request){
@@ -43,7 +43,7 @@ class VeiculoController extends Controller
         ]);
 
         $veiculo->update($dadosValidados);
-        return redirect()->route('veiculos.index')->with('sucesso', 'Veículo atualizado com sucesso!');
+        return redirect()->route('home.index')->with('sucesso', 'Veículo atualizado com sucesso!');
     }
 
     public function show(Veiculo $veiculo){

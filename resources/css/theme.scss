@@ -1,0 +1,37 @@
+// 1. Defina suas cores personalizadas
+$cinza-chumbo: #1E1E1E;
+$cor-primaria: #0066FF;
+$cor-secundaria: #00B8D9;
+$cor-perigo: #DC3545;
+$cor-info: #0284C7;
+$cor-aviso: #F59E0B;
+$cor-sucesso: #16A34A;
+
+
+
+// 2. Sobrescreva as variáveis de cores do Bootstrap
+$dark: $cinza-chumbo;
+$primary: $cor-primaria;
+$secondary: $cor-secundaria;
+$danger: $cor-perigo;
+$info: $cor-info;
+$warning: $cor-aviso;
+$success: $cor-sucesso;
+
+// 3. Importe as variáveis do Bootstrap
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+// 4. Adicione mais cores ao mapa de cores do Bootstrap
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary,
+    "success": $success,
+    "dark": $dark,
+    "social": #3b5998
+  )
+);
+
+// 5. Importe o restante do Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
