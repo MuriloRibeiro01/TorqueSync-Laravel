@@ -64,7 +64,7 @@
 
         <button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#adicionarVeiculoModal">Adicionar Veículo</button>
 
-    <!-- MODAL DE FORMULÁRIO DE CADASTRO DOS VEÍCULOS -->
+        <!-- MODAL DE FORMULÁRIO DE CADASTRO DOS VEÍCULOS -->
 
         <div class="modal fade " id="adicionarVeiculoModal" tabindex="-1" aria-labelledby="adicionarVeiculoModalLabel" aria-hidden="true">
             <div class="modal-dialog">

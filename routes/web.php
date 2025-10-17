@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VeiculoController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,7 @@ use App\Http\Controllers\VeiculoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Rotas para veículos
-Route::get('/', [VeiculoController::class, 'index'])->name('home.index');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.');
 
 Route::get('/clientes', function () {
     return view('clientes');
