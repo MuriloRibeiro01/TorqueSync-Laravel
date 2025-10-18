@@ -1,66 +1,127 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🚗 TorqueSync - Sistema de Gestão para Locadoras de Veículos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+O TorqueSync é uma aplicação web completa, construída com o framework Laravel, para a gestão inteligente de frotas de veículos. O sistema foi desenhado para ser uma solução monolítica robusta, unindo o poder do PHP no backend com a reatividade das views em Blade no frontend.
 
-## About Laravel
+✨ A História por Trás do Projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A ideia do TorqueSync nasceu de uma necessidade real: ajudar meu pai a gerenciar sua locadora de veículos de forma mais eficiente. O controle manual em planilhas e anotações dificultava a visão geral do negócio, o rastreamento de manutenções e a análise de custos e receitas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Este projeto é a solução para esse desafio. Uma ferramenta criada para ser o braço direito do gestor da frota, centralizando todas as informações cruciais do negócio: desde o status de cada carro até a lucratividade que cada um gera. É um projeto de pai e filho que une tecnologia e empreendedorismo.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+🚀 Status e Funcionalidades do Projeto
 
-## Learning Laravel
+O que já foi feito (Fases Concluídas):
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+[X] Modelagem e criação do banco de dados relacional (MySQL).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+[X] Configuração completa do ambiente de desenvolvimento com Laravel.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+[X] Dashboard Principal: Interface central com KPIs (Indicadores Chave) dinâmicos, exibindo o status geral da frota em tempo real.
 
-## Laravel Sponsors
+[X] Módulo de Gestão da Frota (CRUD Completo):
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+[X] Cadastro de novos veículos com status padrão (Disponível).
 
-### Premium Partners
+[X] Edição dos detalhes de cada veículo.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+[X] Exclusão de veículos do sistema.
 
-## Contributing
+[X] Listagem e visualização completa da frota.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+[X] Interface com Abas: Organização da UI para separar a visão geral do gerenciamento de cada módulo (Veículos, Clientes, Locações).
 
-## Code of Conduct
+[X] Componentização da View: Refatoração do código Blade utilizando partials para melhor organização e manutenibilidade.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Funcionalidades Planejadas (Roadmap):
 
-## Security Vulnerabilities
+O objetivo é criar um sistema robusto e intuitivo. As próximas funcionalidades a serem desenvolvidas são:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Módulo 2: Gestão de Clientes
 
-## License
+[ ] CRUD completo para o cadastro de clientes (locatários).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Módulo 3: Gestão de Operações
+
+[ ] Criação e gerenciamento de registros de locação (aluguéis).
+
+[ ] Registro de devolução com atualização de quilometragem e status do veículo.
+
+[ ] Registro de manutenções detalhadas com custos associados.
+
+Módulo 4: Inteligência e Relatórios
+
+[ ] Cálculo e notificação de próximas manutenções preventivas.
+
+[ ] Relatório de lucratividade por veículo (Receita vs. Custo).
+
+[ ] (Upgrade Futuro) Geração de contratos de locação em PDF.
+
+🛠️ Tecnologias Utilizadas
+
+Backend: PHP 8+ com o framework Laravel 10+.
+
+Frontend: Laravel Blade, Bootstrap 5, JavaScript.
+
+Banco de Dados: MySQL.
+
+Gerenciamento de Dependências: Composer (PHP) e NPM (JS).
+
+Servidor de Desenvolvimento: Laravel Sail (Docker) ou Valet.
+
+⚙️ Como Rodar o Projeto Localmente
+
+Pré-requisitos:
+
+PHP 8.1+
+
+Composer
+
+Node.js e NPM
+
+Servidor MySQL
+
+# 1. Clone o repositório
+$ git clone [https://github.com/MuriloRibeiro01/TorqueSync-Laravel.git](https://github.com/MuriloRibeiro01/TorqueSync-Laravel.git)
+
+# 2. Navegue até o diretório do projeto
+$ cd TorqueSync-Laravel
+
+# 3. Instale as dependências do PHP
+$ composer install
+
+# 4. Instale as dependências do JavaScript
+$ npm install
+
+# 5. Crie seu arquivo de ambiente
+$ cp .env.example .env
+
+# 6. Gere a chave da aplicação
+$ php artisan key:generate
+
+# 7. Configure o Banco de Dados no arquivo .env
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=torquesync
+# DB_USERNAME=root
+# DB_PASSWORD=
+
+# 8. Rode as migrações para criar as tabelas
+$ php artisan migrate
+
+# 9. Compile os assets do frontend
+$ npm run dev
+
+# 10. Inicie o servidor de desenvolvimento
+$ php artisan serve
+
+
+🤝 Como Contribuir
+
+Este é um projeto de portfólio em desenvolvimento. Sinta-se à vontade para abrir uma Issue para relatar bugs ou sugerir novas funcionalidades. Pull Requests são muito bem-vindos!
+
+📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+Feito com ☕, código e a ambição da "Operação TorqueSync GT" por Murilo Ribeiro da Silveira.
