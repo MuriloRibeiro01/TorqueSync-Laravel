@@ -14,7 +14,7 @@ use App\Http\Controllers\DashboardController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard.');
+Route::get('/', [DashboardController::class, 'index'])->name('home.index');
 
 Route::get('/clientes', function () {
     return view('clientes');
@@ -25,8 +25,8 @@ Route::get('/clientes/create', function () {
 })->name('clientes.create');
 
 // Rota para armazenar dados do veículo
-Route::post('/veiculos', [VeiculoController::class, 'store'])->name('veiculos.store');
+Route::post('/', [VeiculoController::class, 'store'])->name('veiculos.store');
 
-Route::put('/veiculos/{veiculo}', [VeiculoController::class, 'update'])->name('veiculos.update');
-Route::get('/veiculos/{veiculo}', [VeiculoController::class, 'show'])->name('veiculos.show');
-Route::delete('/veiculos/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
+Route::put('/{veiculo}', [VeiculoController::class, 'update'])->name('veiculos.update');
+Route::get('/{veiculo}', [VeiculoController::class, 'show'])->name('veiculos.show');
+Route::delete('/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
