@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Veiculo extends Model
+class Cliente extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['marca', 'modelo', 'ano', 'placa', 'cor', 'status'];
+    protected $fillable = ['nome', 'email', 'telefone', 'endereco', 'cpf'];
 
     protected $primaryKey = 'id';
 }

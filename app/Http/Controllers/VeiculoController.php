@@ -8,9 +8,6 @@ use Illuminate\Validation\Rule;
 
 class VeiculoController extends Controller
 {
-
-
-
     public function index(){ 
         $veiculos = Veiculo::all();
         return view('home', ['veiculos' => $veiculos]);

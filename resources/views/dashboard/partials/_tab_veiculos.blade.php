@@ -1,5 +1,3 @@
-{{-- AQUI ENTRA TODO O SEU CÓDIGO DE LISTAGEM DE VEÍCULOS --}}
-
 <div class="table-responsive">
     <table class="table table-striped table-hover table-bordered table-dark">
         <thead class="table-dark">
@@ -43,6 +41,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
                         </form>
+                        <button type="button" class="btn btn-sm btn-success" id="btn-alugar-veiculo">Alugar</button>
                     </td>
                 </tr>
             @empty
@@ -53,4 +52,5 @@
         </tbody>
     </table>
 
-<button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#adicionarVeiculoModal">Adicionar Veículo</button>
+    <button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#adicionarVeiculoModal">Adicionar Veículo</button>
+</div>

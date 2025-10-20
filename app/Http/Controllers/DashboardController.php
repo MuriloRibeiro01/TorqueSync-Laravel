@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Veiculo;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,10 @@ class DashboardController extends Controller
         $veiculosAlugados = Veiculo::where('status', 'Alugado')->count();
         $veiculosManutencao = Veiculo::where('status', 'Manutenção')->count();
 
+        $clientes = Cliente::all(); // Busca todos os clientes
+
         // DEIXA VALOR FIXO PARA OS CLIENTES | MUDAR DEPOIS
-        $totalClientes = 0; // Exemplo fixo
+        $totalClientes = Cliente::count(); // Exemplo fixo
 
         // Lógica da aba de "GERENCIAR FROTA"
         $veiculos = Veiculo::latest()->get(); // Ordena pelo mais recente
@@ -26,7 +29,8 @@ class DashboardController extends Controller
             'veiculosAlugados',
             'veiculosManutencao',
             'totalClientes',
-            'veiculos' // Essencial para a aba de "GERENCIAR FROTA"
+            'veiculos',
+            'clientes'
         ));
     }
 }

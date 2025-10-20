@@ -1,6 +1,5 @@
 
 {{-- Aqui entram os CARDS de KPI --}}
-{{-- Aqui entram as listas de "Últimas Locações" e "Devoluções Próximas" --}}
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="text-light">Dashboard</h1>
     <div class="d-flex gap-2">
