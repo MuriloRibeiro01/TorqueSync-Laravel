@@ -1,38 +1,15 @@
 <p align="center">
 <!-- CORRIGIDO: Removido o "https://www.google.com/search?q=google.com/search%3Fq%3D" dos links -->
-<img src="https://img.shields.io/badge/PHP-777BB4%3Fstyle%3Dfor-the-badge%26logo%3Dphp%26logoColor%3Dwhite" alt="PHP">
-<img src="https://img.shields.io/badge/Laravel-FF2D20%3Fstyle%3Dfor-the-badge%26logo%3Dlaravel%26logoColor%3Dwhite" alt="Laravel">
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
-<img src="https://img.shields.io/badge/Bootstrap-7952B3%3Fstyle%3Dfor-the-badge%26logo%3Dbootstrap%26logoColor%3Dwhite" alt="Bootstrap">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+<img src="https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white" alt="PHP">
+<img src="https://img.shields.io/badge/Laravel-%23FF2D20.svg?logo=laravel&logoColor=white" alt="Laravel">
+<img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff" alt="MySQL">
+<img src="https://img.shields.io/badge/Bootstrap-7952B3?logo=bootstrap&logoColor=fff" alt="Bootstrap">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000" alt="JavaScript">
 </p>
 
 <h1 align="center">🚗 TorqueSync - Sistema de Gestão para Locadoras</h1>
 
 O TorqueSync é uma aplicação web completa, construída com o framework Laravel 10+, para a gestão inteligente de frotas de veículos. O sistema foi desenhado como uma solução monolítica robusta, unindo o poder do PHP no backend com a reatividade das views em Blade no frontend.
-
-<h2 align="center">🖥️ Demonstração da Aplicação</h2>
-
-O coração do TorqueSync é o seu dashboard central, projetado para fornecer uma visão clara e objetiva da operação.
-
-<!--
-MURILO! Aqui é o lugar daquele GIF matador do fluxo de aluguel!
-
-Grave o fluxo: Mostrar o carro "Disponível"
-
-Clicar em "Alugar"
-
-Modal abrir com o NOME e CÁLCULO de preço
-
-Confirmar o aluguel
-
-Mostrar a página recarregada com o carro "Alugado"
--->
-
-<p align="center">
-<!-- CORRIGIDO: Link do GIF agora é um placeholder válido -->
-<img src="https://www.google.com/search?q=https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmRhZGUzM2MyZDRjYmFjZTU4ZjBhZGIyZDRlN2E3NjY2Y2RkM2E1MyZlcD12MV9pbnRlcm5hbF9naWZzX2J5X2lkJmN0PWc/3o7bu3XilJ5BOiSGic/giphy.gif" alt="GIF do Dashboard TorqueSync (COLOQUE SEU LINK AQUI)" style="width: 90%; max-width: 700px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-</p>
 
 <h2 align="center">💡 Diferenciais Técnicos (O "Pulo do Gato")</h2>
 
