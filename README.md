@@ -1,66 +1,244 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+
+🚗 TorqueSync - Sistema de Gestão de Frotas
+
+<img src="https://www.google.com/search?q=https://img.shields.io/badge/PHP-777BB4%3Fstyle%3Dfor-the-badge%26logo%3Dphp%26logoColor%3Dwhite" alt="PHP">
+<img src="https://www.google.com/search?q=https://img.shields.io/badge/Laravel-FF2D20%3Fstyle%3Dfor-the-badge%26logo%3Dlaravel%26logoColor%3Dwhite" alt="Laravel">
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+<img src="https://www.google.com/search?q=https://img.shields.io/badge/Bootstrap-7952B3%3Fstyle%3Dfor-the-badge%26logo%3Dbootstrap%26logoColor%3Dwhite" alt="Bootstrap">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+
+
+
+
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<b>O TorqueSync é uma aplicação web completa para a gestão inteligente de frotas de veículos, unindo controle operacional, financeiro e administrativo em uma única plataforma.</b>
 </p>
 
-## About Laravel
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+✨ Sobre o Projeto
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A ideia do TorqueSync nasceu de uma necessidade real: ajudar na gestão de uma locadora de veículos, otimizando processos que antes eram manuais e descentralizados.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O sistema visa ser o "braço direito" do gestor, centralizando informações cruciais como:
 
-## Learning Laravel
+Status da frota em tempo real.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Controle de aluguéis e devoluções.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Histórico de manutenções e custos.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Gestão de clientes e contratos.
 
-## Laravel Sponsors
+É um projeto que une tecnologia e empreendedorismo, focado em resolver dores reais do negócio.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+🚀 Funcionalidades
 
-### Premium Partners
+✅ Implementadas (Fase 1 Concluída)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+<details>
+<summary><b>📦 Gestão da Frota (CRUD Completo)</b></summary>
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+<ul>
+<li>Cadastro completo de veículos com especificações detalhadas.</li>
+<li>Edição e exclusão (Soft Delete) de registros.</li>
+<li>Listagem com filtros e status dinâmicos.</li>
+<li><b>Diferencial:</b> Máscaras de input inteligentes (Placa, Quilometragem, Valores) para melhor UX.</li>
+</ul>
+</details>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<details>
+<summary><b>👥 Gestão de Clientes</b></summary>
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+<ul>
+<li>Cadastro de clientes com validação de CPF/CNPJ.</li>
+<li>Histórico de locações por cliente.</li>
+<li>Edição de dados cadastrais.</li>
+</ul>
+</details>
+
+<details>
+<summary><b>🔑 Gestão de Locações (Core)</b></summary>
+
+
+
+
+
+<ul>
+<li><b>Fluxo de Aluguel:</b> Seleção de veículo, cliente e datas.</li>
+<li><b>Cálculo Automático:</b> O sistema calcula o valor total do aluguel com base na diária e no período selecionado (Frontend em tempo real + Backend para segurança).</li>
+<li><b>Fluxo de Devolução:</b> Registro de devolução, liberação do veículo e fechamento do contrato.</li>
+<li><b>Controle de Status:</b> Atualização automática do status do veículo (Disponível ↔️ Alugado).</li>
+</ul>
+</details>
+
+<details>
+<summary><b>📊 Dashboard Inteligente</b></summary>
+
+
+
+
+
+<ul>
+<li><b>KPIs em Tempo Real:</b> Veículos disponíveis, alugados, em manutenção e total de clientes.</li>
+<li><b>Visão Geral:</b> Tabela de "Veículos em Operação" com detalhes de quem alugou, prazos e status.</li>
+<li><b>Alertas:</b> Indicadores visuais de atrasos na devolução.</li>
+</ul>
+</details>
+
+🚧 Roadmap (Próximos Passos)
+
+[ ] Módulo de Manutenção: Controle de ordens de serviço, custos e histórico de reparos.
+
+[ ] Relatórios Financeiros: Lucratividade por veículo, fluxo de caixa e previsões.
+
+[ ] Alertas Automáticos: Notificações de manutenção preventiva baseada na quilometragem.
+
+[ ] Contratos em PDF: Geração automática de contratos de locação.
+
+🛠️ Tecnologias Utilizadas
+
+Este projeto foi construído com uma stack robusta e moderna:
+
+Categoria
+
+Tecnologia
+
+Descrição
+
+Backend
+
+PHP 8.1+
+
+Linguagem base do sistema.
+
+Framework
+
+Laravel 10+
+
+Framework PHP robusto para arquitetura MVC segura e escalável.
+
+Frontend
+
+Blade & Bootstrap 5
+
+Motor de templates do Laravel combinado com framework CSS para interfaces responsivas.
+
+Scripting
+
+JavaScript (ES6+)
+
+Lógica de interface, máscaras (IMask.js) e requisições AJAX (Fetch API).
+
+Banco de Dados
+
+MySQL
+
+Banco de dados relacional para persistência segura dos dados.
+
+Ferramentas
+
+Composer & NPM
+
+Gerenciadores de dependências para PHP e JS.
+
+⚙️ Como Rodar o Projeto Localmente
+
+Siga estes passos para ter o TorqueSync rodando na sua máquina:
+
+Pré-requisitos
+
+PHP 8.1 ou superior.
+
+Composer instalado.
+
+Node.js e NPM instalados.
+
+Servidor MySQL (XAMPP, Laragon, Docker, etc).
+
+Passo a Passo
+
+Clone o repositório:
+
+git clone [https://github.com/MuriloRibeiro01/TorqueSync.git](https://github.com/MuriloRibeiro01/TorqueSync.git)
+cd TorqueSync
+
+
+Instale as dependências do Backend (PHP):
+
+composer install
+
+
+Instale as dependências do Frontend (JS/CSS):
+
+npm install
+
+
+Configure o ambiente:
+
+Duplique o arquivo .env.example e renomeie para .env.
+
+Gere a chave da aplicação:
+
+php artisan key:generate
+
+
+Configure as credenciais do seu banco de dados no arquivo .env:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=torquesync
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+Prepare o Banco de Dados:
+
+Crie um banco de dados vazio chamado torquesync no seu MySQL.
+
+(Se estiver usando Migrations) Rode as migrações: php artisan migrate
+
+(Se estiver usando SQL manual) Importe o arquivo database/schema.sql (ou equivalente).
+
+Compile os Assets e Inicie o Servidor:
+
+npm run build
+php artisan serve
+
+
+Acesse: Abra seu navegador em http://localhost:8000.
+
+🤝 Como Contribuir
+
+Contribuições são sempre bem-vindas! Se você tiver alguma ideia para melhorar o projeto:
+
+Faça um Fork do projeto.
+
+Crie uma nova Branch (git checkout -b feature/MinhaFeature).
+
+Faça o Commit (git commit -m 'Adicionando uma nova feature incrível').
+
+Faça o Push (git push origin feature/MinhaFeature).
+
+Abra um Pull Request.
+
+📄 Licença
+
+Este projeto está protegido sob uma licença proprietária. Veja o arquivo LICENSE para mais detalhes.
+
+Copyright © 2025 Murilo Ribeiro da Silveira. Todos os direitos reservados.
+
+<div align="center">
+<sub>Feito com ☕, código e dedicação por <b>Murilo Ribeiro da Silveira</b>.</sub>
+</div>
