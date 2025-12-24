@@ -29,7 +29,16 @@
                         <label for="corEdit" class="form-label">Cor</label>
                         <input type="text" class="form-control" id="corEdit" name="cor">
                     </div>
+                    <div class="mb-3">
+                        <label for="quilometragemEdit" class="form-label">Quilometragem</label>
+                        <input type="text" class="form-control" id="quilometragemEdit" name="quilometragem_atual" inputmode="decimal">
+                    </div>
+                    <div class="mb-3">
+                        <label for="valor_diasEdit" class="form-label">Valor do aluguel por um dia</label>
+                        <input type="text" class="form-control" id="valor_diasEdit" name="valor_dias" placeholder="0,00">
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
+                    <!--button type="button" class="btn btn-warning">Mandar à Manutenção</button-->
                 </form>
             </div>
         </div>

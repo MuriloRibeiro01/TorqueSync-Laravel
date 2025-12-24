@@ -23,9 +23,6 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link text-info" id="clientes-tab" data-bs-toggle="tab" data-bs-target="#clientes-tab-pane" type="button" role="tab" aria-controls="clientes-tab-pane" aria-selected="false">Gerenciar Clientes</button>
         </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link text-info" id="locacoes-tab" data-bs-toggle="tab" data-bs-target="#locacoes-tab-pane" type="button" role="tab" aria-controls="locacoes-tab-pane" aria-selected="false">Gerenciar Locações</button>
-        </li>
     </ul>
 
     {{-- CONTEÚDO DAS ABAS --}}
@@ -51,5 +48,8 @@
     {{-- MODAIS (ficam fora das abas, pois são globais na página) --}}
     @include('dashboard.partials._modal_add_veiculo')
     @include('dashboard.partials._modal_edit_veiculo')
-
+    @include('dashboard.partials._modal_alugar_veiculo')
+    @include('dashboard.partials._modal_add_cliente')
+    @include('dashboard.partials._modal_edit_cliente')
+    
 @endsection

@@ -28,6 +28,14 @@
                         <label for="cor" class="form-label">Cor</label>
                         <input type="text" class="form-control" id="cor" name="cor" required>
                     </div>
+                    <div class="mb-3">
+                        <label for="quilometragem" class="form-label">Quilometragem</label>
+                        <input type="text" class="form-control" id="quilometragem" name="quilometragem_atual" inputmode="decimal" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="valor_dias" class="form-label">Valor do aluguel por um dia</label>
+                        <input type="number" class="form-control" id="valor_dias" name="valor_dias" step="0.01" required>
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>

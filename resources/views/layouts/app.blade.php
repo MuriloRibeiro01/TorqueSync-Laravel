@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'TorqueSync')</title>
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
     {{-- O CSS pode ficar aqui no head, vamos separar para garantir --}}
     @vite(['resources/css/app.scss', 'resources/css/theme.scss'])
+
+    <script src="https://unpkg.com/imask"></script>
 
     
 </head>

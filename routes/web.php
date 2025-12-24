@@ -4,17 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VeiculoController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClienteController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\AluguelController;
 
 // Dashboard (rota principal)
 Route::get('/', [DashboardController::class, 'index'])->name('home.index');
@@ -29,10 +19,17 @@ Route::prefix('clientes')->group(function () {
 });
 
 // ROTAS DE VEÍCULOS
-// Rota para armazenar dados do veículo
 Route::prefix('/veiculos')->group(function () {
     Route::post('/', [VeiculoController::class, 'store'])->name('veiculos.store');
     Route::put('/{veiculo}', [VeiculoController::class, 'update'])->name('veiculos.update');
     Route::get('/{veiculo}', [VeiculoController::class, 'show'])->name('veiculos.show');
     Route::delete('/{veiculo}', [VeiculoController::class, 'destroy'])->name('veiculos.destroy');
+    Route::post('/{veiculo}/manutencao', [VeiculoController::class, 'mandarManutencao'])->name('veiculos.mandarManutencao');
+});
+
+// ROTAS DE ALUGUÉIS
+Route::prefix('/alugueis')->group(function () {
+    Route::post('/', [AluguelController::class, 'store'])->name('aluguel.store');
+    Route::get('/{aluguel}', [AluguelController::class, 'show'])->name('aluguel.show');
+    Route::post('/{aluguel}/devolver', [AluguelController::class, 'devolverLocacao'])->name('aluguel.devolver');
 });

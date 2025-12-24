@@ -42,105 +42,414 @@ document.addEventListener('DOMContentLoaded', function () {
     if (active) active.innerHTML = active.dataset.active;
 
 
-    // Carregador do modal de edição (se necessário)
+    // ============== Início do Botão de Editar Veículo ==============
     const editarVeiculoModal = document.getElementById('editarVeiculoModal');
     const formEditVeiculo = document.getElementById('formEditVeiculo');
+
     if (editarVeiculoModal && formEditVeiculo) {
         editarVeiculoModal.addEventListener('show.bs.modal', async function (event) {
             const button = event.relatedTarget;
+
             if (!button) return;
+
             const fetchUrl = button.getAttribute('data-fetch-url');
             const updateUrl = button.getAttribute('data-update-url');
+            const veiculoNome = button.getAttribute('data-veiculo-nome');
+
+            const modalTitle = document.getElementById('tituloModalEditVeiculo');
+
+            // Atualiza o TÍTULO do modal
+            if (modalTitle) {
+                modalTitle.textContent = veiculoNome
+                    ? `Editar Veículo: ${veiculoNome}`
+                    : 'Editar Veículo';
+            }
+
             if (updateUrl) formEditVeiculo.action = updateUrl;
 
             if (fetchUrl) {
                 try {
-                    const resp = await fetch(fetchUrl, { headers: { 'Accept': 'application/json' }});
+                    const resp = await fetch(fetchUrl, { headers: { 'Accept': 'application/json' } });
                     if (!resp.ok) throw new Error('Falha ao buscar dados');
                     const data = await resp.json();
+
                     document.getElementById('marcaEdit').value = data.marca || '';
                     document.getElementById('modeloEdit').value = data.modelo || '';
                     document.getElementById('anoEdit').value = data.ano || '';
                     document.getElementById('placaEdit').value = data.placa || '';
                     document.getElementById('corEdit').value = data.cor || '';
-                    if (document.getElementById('statusEdit')) {
-                        document.getElementById('statusEdit').value = data.status || '';
-                    }
+                    
+                    // Formata a quilometragem para exibição
+                    const quilometragem = data.quilometragem_atual || '';
+                    document.getElementById('quilometragemEdit').value = quilometragem.toString().replace('.', ',');
+                    
+                    // Formata o valor para exibição
+                    const valorDias = data.valor_dias || '';
+                    document.getElementById('valor_diasEdit').value = valorDias.toString().replace('.', ',');
+                    
                 } catch (err) {
                     console.error('Erro ao carregar dados do veículo:', err);
                 }
             }
         });
+
+        // CORREÇÃO: Adicionar evento de submit para formatar os dados ANTES de enviar
+        formEditVeiculo.addEventListener('submit', function(e) {
+            // Formata a quilometragem (remove pontos e converte vírgula para ponto)
+            const kmInput = document.getElementById('quilometragemEdit');
+            if (kmInput && kmInput.value) {
+                let kmValue = kmInput.value;
+                kmValue = kmValue.toString().replace(/\./g, ''); // Remove pontos de milhar
+                kmValue = kmValue.replace(',', '.'); // Converte vírgula decimal para ponto
+                kmInput.value = kmValue;
+            }
+
+            // Formata o valor_dias (remove pontos e converte vírgula para ponto)
+            const valorInput = document.getElementById('valor_diasEdit');
+            if (valorInput && valorInput.value) {
+                let valorValue = valorInput.value;
+                valorValue = valorValue.toString().replace(/\./g, ''); // Remove pontos de milhar
+                valorValue = valorValue.replace(',', '.'); // Converte vírgula decimal para ponto
+                valorInput.value = valorValue;
+            }
+
+            // O formulário será enviado normalmente após isso
+            // Não precisa de e.preventDefault() a menos que queira AJAX
+        });
+    }
+    // ============== Fim do Botão de Editar Veículo ==============
+
+
+    // ============== Início do Modal de Alugar Veículo ==============
+    const alugarVeiculoModal = document.getElementById('alugarVeiculoModal');
+
+    // Lógica de cálculo do valor do aluguel
+    const dataRetiradaInput = document.querySelector('#data_retirada');
+    const dataDevolucaoInput = document.querySelector('#data_devolucao');
+    const displayValorTotal = document.querySelector('#displayValorTotalAluguel');
+    let valorDiariaVeiculo = 0; // Valor global
+
+    // Função para calcular e exibir o total
+    const calcularTotalAluguel = () => {
+        const dataRetirada = new Date(dataRetiradaInput.value);
+        const dataDevolucao = new Date(dataDevolucaoInput.value);
+
+        // validação das datas
+        if(dataDevolucaoInput.value && dataDevolucao < dataRetirada){
+            displayValorTotal.textContent = 'Data inválida';
+            displayValorTotal.classList.remove('text-success');
+            displayValorTotal.classList.add('text-danger');
+            return;
+        }
+
+        if(dataRetiradaInput.value && dataDevolucaoInput.value && valorDiariaVeiculo > 0){
+            const diffTime = Math.abs(dataDevolucao - dataRetirada);
+
+            // Diferença de dias + 1
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
+
+            const total = diffDays * valorDiariaVeiculo;
+
+            // Formatar para BRL (R$)
+            displayValorTotal.textContent = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            displayValorTotal.classList.remove('text-danger');
+            displayValorTotal.classList.add('text-success');
+        } else {
+            // Se não tiver dados suficientes, zera o valor
+            displayValorTotal.textContent = 'R$ 0,00';
+            displayValorTotal.classList.remove('text-danger');
+            displayValorTotal.classList.add('text-success');
+        }
+    };
+
+    // Eventos para recalcular ao mudar as datas
+    dataRetiradaInput.addEventListener('change', calcularTotalAluguel);
+    dataDevolucaoInput.addEventListener('change', calcularTotalAluguel);
+    // Fim da lógica de cálculo do valor do aluguel
+
+    if (alugarVeiculoModal) {
+        alugarVeiculoModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget;
+            if (!button) return;
+
+            // Pega os dados do botão
+            const veiculoNome = button.getAttribute('data-veiculo-nome') || '';
+            const veiculoId = button.getAttribute('data-veiculo-id') || '';
+            const veiculoDiaria = button.getAttribute('data-veiculo-diaria') || 0;
+            valorDiariaVeiculo = parseFloat(veiculoDiaria);
+
+            // Atualiza o título
+            const modalTitle = alugarVeiculoModal.querySelector('.modal-title');
+            if (modalTitle) modalTitle.textContent = `Alugar Veículo: ${veiculoNome}`;
+
+            // Atualiza o campo hidden
+            const hiddenInput = alugarVeiculoModal.querySelector('#aluguel_veiculo_id');
+            if (hiddenInput) hiddenInput.value = veiculoId;
+
+            // Limpa as datas e recalcula
+            dataRetiradaInput.value = '';
+            dataDevolucaoInput.value = '';
+            calcularTotalAluguel();
+        });
     }
 
-    // Botão de alugar muda o status do veículo para "Alugado"
-    document.querySelectorAll('.btn-alugar-veiculo').forEach(button => {
+    // ============= Fim do Modal de Alugar Veículo ==============
+
+    // ============== Início do Botão de Editar Cliente ==============
+    const editarClienteModal = document.getElementById('editarClienteModal');
+    const formEditCliente = document.getElementById('formEditCliente');
+
+    if (editarClienteModal && formEditCliente) {
+        editarClienteModal.addEventListener('show.bs.modal', async function (event) {
+
+            const button = event.relatedTarget;
+
+            if (!button) return;
+
+            const fetchUrl = button.getAttribute('data-fetch-url');
+            const updateUrl = button.getAttribute('data-update-url');
+            const clienteNome = button.getAttribute('data-cliente-nome'); 
+
+            const modalTitle = document.getElementById('tituloModalEditCliente');
+
+            // Atualiza o TÍTULO do modal
+            if(modalTitle){
+                modalTitle.textContent = clienteNome
+                    ? `Editar Cliente: ${clienteNome}`
+                    : 'Editar Cliente';
+            }
+
+            if (updateUrl) formEditCliente.action = updateUrl;
+
+            if (fetchUrl) {
+                try {
+                    const resp = await fetch(fetchUrl, { headers: { 'Accept': 'application/json' } });
+                    if (!resp.ok) throw new Error('Falha ao buscar dados');
+                    const data = await resp.json();
+
+                    document.getElementById('cpfEdit').value = data.cpf_documento || '';
+                    document.getElementById('nomeEdit').value = data.nome || '';
+                    document.getElementById('cnhEdit').value = data.cnh || '';
+                    document.getElementById('emailEdit').value = data.email || '';
+                    document.getElementById('telefoneEdit').value = data.telefone || '';
+                    document.getElementById('enderecoEdit').value = data.endereco || '';
+
+                    
+
+                } catch (err) {
+                    console.error('Erro ao carregar dados do cliente:', err);
+                }
+            }
+        });
+
+    }
+    // ============== Fim do Botão de Editar Cliente ==============
+
+    // Formatador de máscara para campos específicos
+    // Máscara para CPF
+
+    const cpfInputs = document.getElementById('cpf_documento');
+    if (cpfInputs) {
+        IMask(cpfInputs, {
+            mask: '000.000.000-00'
+        });
+    }
+
+    // Máscara para Telefone
+    const telefoneInputs = document.getElementById('telefone');
+    if (telefoneInputs) {
+        IMask(telefoneInputs, {
+            mask: [
+            {mask: '(00) 0000-0000'},
+            {mask: '(00) 00000-0000'}
+        ]});
+    }
+
+    // Máscara para CNH
+    const cnhInputs = document.getElementById('cnh');
+    if (cnhInputs) {
+        IMask(cnhInputs, {
+            mask: '00000000000'
+        });
+    }
+
+    // Máscara para Placa de Veículo
+    const placaInputs = document.getElementById('placa');
+    if (placaInputs) {
+        IMask(placaInputs, {
+            mask: 'aaa-0a00',
+            prepare: function (str) {
+                return str.toUpperCase();
+            }
+        });
+    }
+
+    // Máscara para Quilometragem
+    const quilometragemInput = document.getElementById('quilometragem'); 
+    if (quilometragemInput) {
+        IMask(quilometragemInput, {
+            mask: Number,
+            scale: 0, // BUG #2 CORRIGIDO: KM é inteiro
+            thousandsSeparator: '.',
+            padFractionalZeros: false,
+            normalizeZeros: false
+        });
+    }
+
+    // MÁSCARAS PARA MODAIS DE "EDITAR"
+
+    // 1. Máscara para o CPF (Modal Editar Cliente)
+    const cpfInputEdit = document.getElementById('cpfEdit');
+    if (cpfInputEdit) {
+        IMask(cpfInputEdit, { mask: '000.000.000-00' });
+    }
+
+    // 2. Máscara para o Telefone (Modal Editar Cliente)
+    const telefoneInputEdit = document.getElementById('telefoneEdit');
+    if (telefoneInputEdit) {
+        IMask(telefoneInputEdit, {
+            mask: [
+                { mask: '(00) 0000-0000' },
+                { mask: '(00) 00000-0000' }
+            ]
+        });
+    }
+
+    // 3. Máscara para a CNH (Modal Editar Cliente)
+    const cnhInputEdit = document.getElementById('cnhEdit');
+    if (cnhInputEdit) {
+        IMask(cnhInputEdit, { mask: '00000000000' });
+    }
+
+    // 4. Máscara para a Placa (Modal Editar Veículo)
+    const placaInputEdit = document.getElementById('placaEdit');
+    if (placaInputEdit) {
+        IMask(placaInputEdit, {
+            mask: 'aaa-0a00',
+            prepare: str => str.toUpperCase()
+        });
+    }
+
+    // 5. Máscara para Quilometragem (Modal Editar Veículo)
+    const quilometragemInputEdit = document.getElementById('quilometragemEdit');
+    if (quilometragemInputEdit) {
+        IMask(quilometragemInputEdit, {
+            mask: Number,
+            scale: 0,
+            thousandsSeparator: '.',
+            padFractionalZeros: false,
+            normalizeZeros: false
+        });
+    }
+
+    const valorDiasInputEdit = document.getElementById('valor_diasEdit');
+    if (valorDiasInputEdit) {
+        // Se já existe máscara, destrói
+        if (valorDiasInputEdit._imask) {
+            valorDiasInputEdit._imask.destroy();
+        }
+        
+        // Remove o type="number" se existir (causa conflito com vírgula)
+        valorDiasInputEdit.type = 'text';
+        
+        // Formatação no blur (quando sai do campo)
+        valorDiasInputEdit.addEventListener('blur', function() {
+            if (!this.value || this.value.trim() === '') {
+                this.value = '0,00';
+                return;
+            }
+            
+            let valor = this.value;
+            
+            // Remove tudo que não for número, vírgula ou ponto
+            valor = valor.replace(/[^\d,.]/g, '');
+            
+            // Se tem ponto como separador de milhar, remove
+            valor = valor.replace(/\.(?=\d{3})/g, '');
+            
+            // Converte vírgula para ponto temporariamente
+            valor = valor.replace(',', '.');
+            
+            // Converte para número
+            let numero = parseFloat(valor);
+            
+            if (isNaN(numero)) {
+                this.value = '0,00';
+                return;
+            }
+            
+            // Arredonda para 2 casas decimais
+            numero = Math.round(numero * 100) / 100;
+            
+            // Formata como string brasileira
+            this.value = numero.toLocaleString('pt-BR', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        });
+        
+        // No focus, remove formatação para facilitar edição
+        valorDiasInputEdit.addEventListener('focus', function() {
+            let valor = this.value;
+            
+            if (valor === '0,00' || !valor) {
+                this.value = '';
+                return;
+            }
+            
+            // Remove formatação
+            valor = valor.replace(/[^\d,.]/g, '');
+            valor = valor.replace(/\./g, ''); // Remove pontos de milhar
+            this.value = valor;
+        });
+    }
+
+    // ============== Início da Lógica de DEVOLUÇÃO ==============
+    // (Versão corrigida do código do Copilot)
+
+    // 1. Pega o Token CSRF que colocamos no <head>
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    const botoesDevolver = document.querySelectorAll('.btn-devolver-veiculo');
+
+    botoesDevolver.forEach(button => {
         button.addEventListener('click', async function () {
-            if (!confirm('Confirmar aluguel deste veículo?')) return;
 
-            const veiculoId = this.getAttribute('data-veiculo-id') || this.dataset.veiculoId;
-            const updateUrl = this.getAttribute('data-update-url') || this.dataset.updateUrl;
-            if (!veiculoId || !updateUrl) return;
+            // Pega a URL que foi montada
+            const devolverUrl = this.getAttribute('data-devolver-url');
 
-            // get CSRF token from meta tag (ensure <meta name="csrf-token"> exists in your layout)
-            const tokenMeta = document.querySelector('meta[name="csrf-token"]');
-            const csrf = tokenMeta ? tokenMeta.getAttribute('content') : null;
+            if(!devolverUrl) return;
 
-            // optimistic UI: disable button while request runs
-            button.disabled = true;
-            const originalText = button.innerHTML;
-            button.innerHTML = 'Processando...';
+            // Feedback visual para o usuário
+            this.innerHTML = 'Processando...';
+            this.disabled = true;
 
             try {
-                const resp = await fetch(updateUrl, {
-                    method: 'PUT',
+                const response = await fetch(devolverUrl, {
+                    method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
                         'Accept': 'application/json',
-                        ...(csrf ? { 'X-CSRF-TOKEN': csrf } : {})
-                    },
-                    body: JSON.stringify({ status: 'Alugado' })
+                        'X-CSRF-TOKEN': csrfToken
+                    }
                 });
 
-                if (!resp.ok) {
-                    // if validation error, try to show message
-                    let errMsg = 'Erro ao atualizar veículo.';
-                    try {
-                        const errJson = await resp.json();
-                        if (errJson?.message) errMsg = errJson.message;
-                    } catch (_) {}
-                    throw new Error(errMsg);
+                if (!response.ok) {
+                    throw new Error(data.message || 'Erro ao processar a devolução.');
                 }
 
-                // success — update the row UI if present
-                const row = button.closest('tr');
-                if (row) {
-                    // prefer an element with class .veiculo-status to update
-                    const statusCell = row.querySelector('.veiculo-status');
-                    if (statusCell) {
-                        statusCell.innerHTML = '<span class="badge bg-warning text-dark">Alugado</span>';
-                    } else {
-                        const badge = row.querySelector('.badge');
-                        if (badge) {
-                            badge.textContent = 'Alugado';
-                            badge.className = 'badge bg-warning text-dark';
-                        }
-                    }
-
-                    // optionally disable the rent button to avoid double actions
-                    button.disabled = true;
-                    button.classList.remove('btn-success');
-                    button.classList.add('btn-secondary');
-                } else {
-                    // fallback: reload the page to reflect changes
-                    window.location.reload();
-                }
-            } catch (err) {
-                console.error(err);
-                alert(err.message || 'Erro ao alugar veículo.');
-                button.disabled = false;
-                button.innerHTML = originalText;
+                // Sucesso
+                window.location.reload();
+            } catch (error) {
+                console.error(error);
+                alert('Erro: ' + error.message);
+                this.innerHTML = 'Devolução'; // Restaura o botão em caso de erro.
+                this.disabled = false;
             }
         });
     });
+    // ============== Fim da Lógica de DEVOLUÇÃO ==============
+
+    
+
 });
