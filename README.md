@@ -1,200 +1,111 @@
 <div align="center">
 
-🚗 TorqueSync - Sistema de Gestão de Frotas
+# 🚗 TorqueSync - Sistema Inteligente de Gestão de Frotas
 
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/PHP-777BB4%3Fstyle%3Dfor-the-badge%26logo%3Dphp%26logoColor%3Dwhite" alt="PHP">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Laravel-FF2D20%3Fstyle%3Dfor-the-badge%26logo%3Dlaravel%26logoColor%3Dwhite" alt="Laravel">
-<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
-<img src="https://www.google.com/search?q=https://img.shields.io/badge/Bootstrap-7952B3%3Fstyle%3Dfor-the-badge%26logo%3Dbootstrap%26logoColor%3Dwhite" alt="Bootstrap">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
-
-
-
-
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 <p align="center">
-<b>O TorqueSync é uma aplicação web completa para a gestão inteligente de frotas de veículos, unindo controle operacional, financeiro e administrativo em uma única plataforma.</b>
+  <b>Solução completa para gestão de frotas de veículos, unindo controle operacional, financeiro e administrativo em uma única plataforma.</b>
 </p>
+
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue?style=for-the-flat)
+![Versão](https://img.shields.io/badge/Versão-1.0.0-green?style=for-the-flat)
 
 </div>
 
-✨ Sobre o Projeto
+## ✨ Sobre o Projeto
 
-A ideia do TorqueSync nasceu de uma necessidade real: ajudar na gestão de uma locadora de veículos, otimizando processos que antes eram manuais e descentralizados.
+O **TorqueSync** nasceu da necessidade real de otimizar a gestão de uma locadora de veículos, substituindo processos manuais e descentralizados por uma solução integrada e inteligente.
 
-O sistema visa ser o "braço direito" do gestor, centralizando informações cruciais como:
+O sistema serve como o **"braço direito" do gestor**, centralizando informações cruciais como:
+- 📊 Status da frota em tempo real
+- 🔑 Controle de aluguéis e devoluções
+- 🔧 Histórico de manutenções e custos
+- 👥 Gestão de clientes e contratos
 
-Status da frota em tempo real.
+**Um projeto que une tecnologia e empreendedorismo, focado em resolver dores reais do negócio.**
 
-Controle de aluguéis e devoluções.
+## 🚀 Funcionalidades
 
-Histórico de manutenções e custos.
+### ✅ **Implementadas (Fase 1 Concluída)**
 
-Gestão de clientes e contratos.
+#### 📦 **Gestão da Frota (CRUD Completo)**
+- ✅ Cadastro completo de veículos com especificações detalhadas
+- ✅ Edição e exclusão (Soft Delete) de registros
+- ✅ Listagem com filtros e status dinâmicos
+- ✅ **Diferencial:** Máscaras de input inteligentes (Placa, Quilometragem, Valores) para melhor UX
 
-É um projeto que une tecnologia e empreendedorismo, focado em resolver dores reais do negócio.
+#### 👥 **Gestão de Clientes**
+- ✅ Cadastro de clientes com validação de CPF/CNPJ
+- ✅ Histórico de locações por cliente
+- ✅ Edição de dados cadastrais
 
-🚀 Funcionalidades
+#### 🔑 **Gestão de Locações (Core do Sistema)**
+- ✅ **Fluxo de Aluguel:** Seleção de veículo, cliente e datas
+- ✅ **Cálculo Automático:** Valor total baseado na diária e período (Frontend + Backend)
+- ✅ **Fluxo de Devolução:** Registro completo e liberação do veículo
+- ✅ **Controle de Status:** Atualização automática (Disponível ↔️ Alugado)
 
-✅ Implementadas (Fase 1 Concluída)
+#### 📊 **Dashboard Inteligente**
+- ✅ **KPIs em Tempo Real:** Veículos disponíveis, alugados, em manutenção e total de clientes
+- ✅ **Visão Operacional:** Tabela detalhada de "Veículos em Operação"
+- ✅ **Alertas Visuais:** Indicadores de atrasos na devolução
 
-<details>
-<summary><b>📦 Gestão da Frota (CRUD Completo)</b></summary>
+## 🚧 **Roadmap (Próximos Passos)**
 
+| Status | Funcionalidade | Descrição |
+|--------|----------------|-----------|
+| 🔄 | **Módulo de Manutenção** | Controle de ordens de serviço, custos e histórico de reparos |
+| 📅 | **Relatórios Financeiros** | Lucratividade por veículo, fluxo de caixa e previsões |
+| 📅 | **Alertas Automáticos** | Notificações de manutenção preventiva baseada na quilometragem |
+| 📅 | **Contratos em PDF** | Geração automática de contratos de locação |
+| 📅 | **API REST** | Integração com sistemas externos |
+| 📅 | **App Mobile** | Versão mobile para gestão em movimento |
 
-
-
-
-<ul>
-<li>Cadastro completo de veículos com especificações detalhadas.</li>
-<li>Edição e exclusão (Soft Delete) de registros.</li>
-<li>Listagem com filtros e status dinâmicos.</li>
-<li><b>Diferencial:</b> Máscaras de input inteligentes (Placa, Quilometragem, Valores) para melhor UX.</li>
-</ul>
-</details>
-
-<details>
-<summary><b>👥 Gestão de Clientes</b></summary>
-
-
-
-
-
-<ul>
-<li>Cadastro de clientes com validação de CPF/CNPJ.</li>
-<li>Histórico de locações por cliente.</li>
-<li>Edição de dados cadastrais.</li>
-</ul>
-</details>
-
-<details>
-<summary><b>🔑 Gestão de Locações (Core)</b></summary>
-
-
-
-
-
-<ul>
-<li><b>Fluxo de Aluguel:</b> Seleção de veículo, cliente e datas.</li>
-<li><b>Cálculo Automático:</b> O sistema calcula o valor total do aluguel com base na diária e no período selecionado (Frontend em tempo real + Backend para segurança).</li>
-<li><b>Fluxo de Devolução:</b> Registro de devolução, liberação do veículo e fechamento do contrato.</li>
-<li><b>Controle de Status:</b> Atualização automática do status do veículo (Disponível ↔️ Alugado).</li>
-</ul>
-</details>
-
-<details>
-<summary><b>📊 Dashboard Inteligente</b></summary>
-
-
-
-
-
-<ul>
-<li><b>KPIs em Tempo Real:</b> Veículos disponíveis, alugados, em manutenção e total de clientes.</li>
-<li><b>Visão Geral:</b> Tabela de "Veículos em Operação" com detalhes de quem alugou, prazos e status.</li>
-<li><b>Alertas:</b> Indicadores visuais de atrasos na devolução.</li>
-</ul>
-</details>
-
-🚧 Roadmap (Próximos Passos)
-
-[ ] Módulo de Manutenção: Controle de ordens de serviço, custos e histórico de reparos.
-
-[ ] Relatórios Financeiros: Lucratividade por veículo, fluxo de caixa e previsões.
-
-[ ] Alertas Automáticos: Notificações de manutenção preventiva baseada na quilometragem.
-
-[ ] Contratos em PDF: Geração automática de contratos de locação.
-
-🛠️ Tecnologias Utilizadas
+## 🛠️ **Stack Tecnológica**
 
 Este projeto foi construído com uma stack robusta e moderna:
 
-Categoria
+| Categoria | Tecnologia | Descrição |
+|-----------|------------|-----------|
+| **Backend** | PHP 8.1+ | Linguagem base do sistema |
+| **Framework** | Laravel 10+ | Arquitetura MVC segura e escalável |
+| **Frontend** | Blade + Bootstrap 5 | Templates responsivos e interface moderna |
+| **Scripting** | JavaScript (ES6+) | Lógica de interface, máscaras e AJAX |
+| **Banco de Dados** | MySQL | Persistência segura dos dados |
+| **Ferramentas** | Composer + NPM | Gerenciadores de dependências |
+| **Versionamento** | Git + GitHub | Controle de versão e colaboração |
 
-Tecnologia
+## ⚙️ **Configuração e Instalação**
 
-Descrição
+### **Pré-requisitos**
+- PHP 8.1 ou superior
+- Composer instalado
+- Node.js e NPM
+- Servidor MySQL (XAMPP, Laragon, Docker, etc)
 
-Backend
+### **Passo a Passo**
 
-PHP 8.1+
-
-Linguagem base do sistema.
-
-Framework
-
-Laravel 10+
-
-Framework PHP robusto para arquitetura MVC segura e escalável.
-
-Frontend
-
-Blade & Bootstrap 5
-
-Motor de templates do Laravel combinado com framework CSS para interfaces responsivas.
-
-Scripting
-
-JavaScript (ES6+)
-
-Lógica de interface, máscaras (IMask.js) e requisições AJAX (Fetch API).
-
-Banco de Dados
-
-MySQL
-
-Banco de dados relacional para persistência segura dos dados.
-
-Ferramentas
-
-Composer & NPM
-
-Gerenciadores de dependências para PHP e JS.
-
-⚙️ Como Rodar o Projeto Localmente
-
-Siga estes passos para ter o TorqueSync rodando na sua máquina:
-
-Pré-requisitos
-
-PHP 8.1 ou superior.
-
-Composer instalado.
-
-Node.js e NPM instalados.
-
-Servidor MySQL (XAMPP, Laragon, Docker, etc).
-
-Passo a Passo
-
-Clone o repositório:
-
-git clone [https://github.com/MuriloRibeiro01/TorqueSync.git](https://github.com/MuriloRibeiro01/TorqueSync.git)
+```bash
+# 1. Clone o repositório
+git clone https://github.com/MuriloRibeiro01/TorqueSync.git
 cd TorqueSync
 
-
-Instale as dependências do Backend (PHP):
-
+# 2. Instale as dependências do PHP
 composer install
 
-
-Instale as dependências do Frontend (JS/CSS):
-
+# 3. Instale as dependências do JavaScript
 npm install
 
-
-Configure o ambiente:
-
-Duplique o arquivo .env.example e renomeie para .env.
-
-Gere a chave da aplicação:
-
+# 4. Configure o ambiente
+cp .env.example .env
 php artisan key:generate
 
-
-Configure as credenciais do seu banco de dados no arquivo .env:
-
+# 5. Configure o banco de dados no .env
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -202,43 +113,81 @@ DB_DATABASE=torquesync
 DB_USERNAME=root
 DB_PASSWORD=
 
+# 6. Execute as migrações
+php artisan migrate
 
-Prepare o Banco de Dados:
-
-Crie um banco de dados vazio chamado torquesync no seu MySQL.
-
-(Se estiver usando Migrations) Rode as migrações: php artisan migrate
-
-(Se estiver usando SQL manual) Importe o arquivo database/schema.sql (ou equivalente).
-
-Compile os Assets e Inicie o Servidor:
-
+# 7. Compile os assets
 npm run build
+
+# 8. Inicie o servidor
 php artisan serve
+````
 
+Acesse: `http://localhost:8000`
 
-Acesse: Abra seu navegador em http://localhost:8000.
+## 🗂️ Estrutura do Projeto
+text
+TorqueSync/
+├── app/
+│   ├── Http/Controllers/    # Controladores
+│   ├── Models/              # Modelos Eloquent
+│   └── Providers/           # Service Providers
+├── database/
+│   ├── migrations/          # Migrações do banco
+│   └── seeders/             # Seeders para dados iniciais
+├── resources/
+│   ├── views/               # Templates Blade
+│   └── js/                  # Arquivos JavaScript
+├── routes/                  # Rotas da aplicação
+├── public/                  # Assets públicos
+└── tests/                   # Testes automatizados
 
-🤝 Como Contribuir
+## 🤝 Como Contribuir
 
-Contribuições são sempre bem-vindas! Se você tiver alguma ideia para melhorar o projeto:
+Contribuições são sempre bem-vindas! Siga estes passos:
 
-Faça um Fork do projeto.
+1. Faça um Fork do projeto
 
-Crie uma nova Branch (git checkout -b feature/MinhaFeature).
+2. Crie uma Branch para sua feature (git checkout -b feature/incrivel)
 
-Faça o Commit (git commit -m 'Adicionando uma nova feature incrível').
+3. Commit suas mudanças (git commit -m 'Adiciona feature incrível')
 
-Faça o Push (git push origin feature/MinhaFeature).
+4. Push para a Branch (git push origin feature/incrivel)
 
-Abra um Pull Request.
+5. Abra um Pull Request
 
-📄 Licença
+## Guidelines de Contribuição
 
-Este projeto está protegido sob uma licença proprietária. Veja o arquivo LICENSE para mais detalhes.
+- Siga o padrão PSR-12 para código PHP
 
-Copyright © 2025 Murilo Ribeiro da Silveira. Todos os direitos reservados.
+- Documente novas funcionalidades
 
-<div align="center">
-<sub>Feito com ☕, código e dedicação por <b>Murilo Ribeiro da Silveira</b>.</sub>
-</div>
+- Adicione testes quando possível
+
+- Mantenha commits semânticos
+
+## 📄 Licença
+
+Este projeto está protegido sob uma licença proprietária. Consulte o arquivo LICENSE para detalhes completos.
+
+**Copyright © 2025 Murilo Ribeiro da Silveira. Todos os direitos reservados.**
+
+## 👨‍💻 Autor
+
+**Murilo Ribeiro da Silveira**
+
+GitHub: @MuriloRibeiro01
+
+LinkedIn: Murilo Ribeiro da Silveira
+
+Email: murilo.ribeiro2709@gmail.com
+
+### 🌟 Agradecimentos
+
+Equipe do Laravel pela incrível framework
+
+Comunidade Bootstrap pelos componentes
+
+Todos os contribuidores de pacotes open-source utilizados
+
+<div align="center"> <sub>Desenvolvido com ☕, código e dedicação por <b>Murilo Ribeiro da Silveira</b></sub><br> <sub>Se este projeto te ajudou, considere dar uma ⭐ no repositório!</sub> </div>
