@@ -126,7 +126,7 @@ php artisan serve
 Acesse: `http://localhost:8000`
 
 ## 🗂️ Estrutura do Projeto
-text
+
 TorqueSync/
 ├── app/
 │   ├── Http/Controllers/    # Controladores
