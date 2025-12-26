@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cliente;
+use Illuminate\Validation\Rule;
 
 class ClienteController extends Controller
 {
@@ -19,24 +20,43 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
+        $dadosSujos = $request->all();
+        
+        if(isset($dadosSujos['cpf_documento'])) {
+            $dadosSujos['cpf_documento'] = preg_replace('/[^0-9]/', '', $dadosSujos['cpf_documento']);
+        }
+        
+        if(isset($dadosSujos['telefone'])) {
+            $dadosSujos['telefone'] = preg_replace('/[^0-9]/', '', $dadosSujos['telefone']);
+        }
 
-        // Validação básica dos dados
+        if(isset($dadosSujos['cnh'])) {
+            $dadosSujos['cnh'] = preg_replace('/[^0-9]/', '', $dadosSujos['cnh']);
+        }
+
+        $request->merge($dadosSujos);
+
+        // VALIDAÇÃO
         $dadosValidados = $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|unique:clientes,email',
-            'telefone' => 'required|string|max:20',
+            // Agora validamos os números limpos
+            'telefone' => 'required|string|max:20', 
             'endereco' => 'required|string|max:255',
-            'cpf_documento' => 'required|string|max:14|unique:clientes,cpf_documento',
-            'cnh' => 'required|string|max:20|unique:clientes,cnh'
+            'cpf_documento' => 'required|string|unique:clientes,cpf_documento',
+            'cnh' => 'required|string|unique:clientes,cnh',
         ]);
 
-        // Cria o CLiente
-        $cliente = Cliente::create($dadosValidados);
+        // DEFINIR STATUS
+        $dadosValidados['status'] = 'inativo';
 
-        if($cliente) {
+        // CRIAÇÃO
+        try {
+            Cliente::create($dadosValidados);
             return redirect()->route('home.index')->with('sucesso', 'Cliente cadastrado com sucesso!');
-        } else {
-            return redirect()->route('home.index')->with('erro', 'Erro ao cadastrar cliente. Tente novamente.');
+        } catch (\Exception $e) {
+            // Se der erro de banco (ex: duplicidade que passou na validação), pega aqui
+            return redirect()->route('home.index')->with('erro', 'Erro ao salvar no banco: ' . $e->getMessage());
         }
     }
 
@@ -58,7 +78,7 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         // Se o status do cliente for ativo, não permitir exclusão
-        if ($cliente->status === 'inativo') {
+        if ($cliente->status == 'inativo' || $cliente->status == NULL) {
             $cliente->delete();
             return redirect()->route('home.index')->with('sucesso', 'Cliente excluído com sucesso!');
         } else {

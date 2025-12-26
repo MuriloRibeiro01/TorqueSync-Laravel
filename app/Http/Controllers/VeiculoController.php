@@ -58,7 +58,7 @@ class VeiculoController extends Controller
         $kmSemPontuacao = str_replace(['.', ','], '', $kmFormatada);
         $request->merge(['quilometragem_atual' => $kmSemPontuacao]);
 
-        // CORREÇÃO PARA valor_dias: Só processa se não for numérico
+        // Só processa se não for numérico
         $valorDias = $request->input('valor_dias');
         
         if ($valorDias) {

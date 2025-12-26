@@ -1,4 +1,3 @@
-// ...código existente...
 document.addEventListener('DOMContentLoaded', function () {
     // Controle de rótulos das abas ao passar o mouse / aba ativa
     const tabs = Array.from(document.querySelectorAll('#dashboardTabs .nav-link'));
@@ -112,9 +111,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 valorValue = valorValue.replace(',', '.'); // Converte vírgula decimal para ponto
                 valorInput.value = valorValue;
             }
-
-            // O formulário será enviado normalmente após isso
-            // Não precisa de e.preventDefault() a menos que queira AJAX
         });
     }
     // ============== Fim do Botão de Editar Veículo ==============
@@ -298,13 +294,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // MÁSCARAS PARA MODAIS DE "EDITAR"
 
-    // 1. Máscara para o CPF (Modal Editar Cliente)
+    // Máscara para o CPF (Modal Editar Cliente)
     const cpfInputEdit = document.getElementById('cpfEdit');
     if (cpfInputEdit) {
         IMask(cpfInputEdit, { mask: '000.000.000-00' });
     }
 
-    // 2. Máscara para o Telefone (Modal Editar Cliente)
+    // Máscara para o Telefone (Modal Editar Cliente)
     const telefoneInputEdit = document.getElementById('telefoneEdit');
     if (telefoneInputEdit) {
         IMask(telefoneInputEdit, {
@@ -315,13 +311,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 3. Máscara para a CNH (Modal Editar Cliente)
+    // Máscara para a CNH (Modal Editar Cliente)
     const cnhInputEdit = document.getElementById('cnhEdit');
     if (cnhInputEdit) {
         IMask(cnhInputEdit, { mask: '00000000000' });
     }
 
-    // 4. Máscara para a Placa (Modal Editar Veículo)
+    // Máscara para a Placa (Modal Editar Veículo)
     const placaInputEdit = document.getElementById('placaEdit');
     if (placaInputEdit) {
         IMask(placaInputEdit, {
@@ -330,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 5. Máscara para Quilometragem (Modal Editar Veículo)
+    // Máscara para Quilometragem (Modal Editar Veículo)
     const quilometragemInputEdit = document.getElementById('quilometragemEdit');
     if (quilometragemInputEdit) {
         IMask(quilometragemInputEdit, {
@@ -405,9 +401,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ============== Início da Lógica de DEVOLUÇÃO ==============
-    // (Versão corrigida do código do Copilot)
 
-    // 1. Pega o Token CSRF que colocamos no <head>
+    // Pega o Token CSRF que colocamos no <head>
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     const botoesDevolver = document.querySelectorAll('.btn-devolver-veiculo');

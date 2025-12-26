@@ -25,7 +25,7 @@ class AluguelController extends Controller
         // Encontra o cliente que está alugando
         $cliente = Cliente::find($dadosValidados['cliente_id']);
 
-        // SE não achar o veículo
+        // Se não achar o veículo
         if(!$veiculo) {
             return redirect()->route('home.index')->with('erro', 'Veículo não encontrado!');
         }
@@ -61,7 +61,7 @@ class AluguelController extends Controller
     }
     public function devolverLocacao(Aluguel $aluguel)
     {
-        // 2. Pega o Veículo que está "amarrado" a este aluguel
+        // Pega o Veículo que está "amarrado" a este aluguel
         $veiculo = $aluguel->veiculo; 
 
         if(!$veiculo) {
@@ -69,11 +69,11 @@ class AluguelController extends Controller
             return response()->json(['message' => 'Veículo não encontrado!'], 404);
         }
 
-        // 3. Atualiza o status do VEÍCULO
+        // Atualiza o status do VEÍCULO
         $veiculo->status = 'Disponível'; // Use 'Disponível' (maiúsculo) para bater com seu @if
         $veiculo->save();
 
-        // 3.5. Atualiza o status do CLIENTE se ele não tiver mais alugueis ativos
+        // Atualiza o status do CLIENTE se ele não tiver mais alugueis ativos
         $cliente = $aluguel->cliente;
         if ($cliente) {
             $alugueisAtivos = $cliente->alugueis()->whereNull('data_devolucao')->count();
@@ -83,14 +83,13 @@ class AluguelController extends Controller
             }
         }
 
-        // 4. Atualiza o ALUGUEL (Fecha a locação)
+        // Atualiza o ALUGUEL (Fecha a locação)
         // Usar os dados do modal para atualizar os campos do veículo alugado
         $aluguel->data_devolucao = Carbon::now();
         // Também salvará a quilometragem final do veículo (dados do modal)
         
         $aluguel->save();
 
-        // 5. Retorna uma resposta JSON de sucesso (que o 'fetch' do seu JS espera)
         return redirect()->route('home.index')->with('sucesso', 'Veículo devolvido com sucesso!');
     }
 }
