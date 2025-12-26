@@ -126,7 +126,7 @@ php artisan serve
 Acesse: `http://localhost:8000`
 
 ## 🗂️ **Estrutura do Projeto**
-
+````
 TorqueSync/
 ├── app/
 │ ├── Http/
@@ -170,7 +170,7 @@ TorqueSync/
 ├── composer.json # Dependências PHP
 ├── package.json # Dependências JavaScript
 └── README.md # Este arquivo
-
+````
 ## 🤝 Como Contribuir
 
 Contribuições são sempre bem-vindas! Siga estes passos:
