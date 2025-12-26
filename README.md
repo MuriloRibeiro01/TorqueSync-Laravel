@@ -125,22 +125,51 @@ php artisan serve
 
 Acesse: `http://localhost:8000`
 
-## 🗂️ Estrutura do Projeto
+## 🗂️ **Estrutura do Projeto**
 
 TorqueSync/
 ├── app/
-│   ├── Http/Controllers/    # Controladores
-│   ├── Models/              # Modelos Eloquent
-│   └── Providers/           # Service Providers
+│ ├── Http/
+│ │ └── Controllers/ # Controladores da aplicação
+│ ├── Models/ # Modelos Eloquent ORM
+│ ├── Providers/ # Service Providers
+│ └── Console/ # Comandos Artisan
+├── bootstrap/ # Inicialização do Laravel
+├── config/ # Arquivos de configuração
 ├── database/
-│   ├── migrations/          # Migrações do banco
-│   └── seeders/             # Seeders para dados iniciais
+│ ├── migrations/ # Migrações do banco de dados
+│ ├── seeders/ # Seeders para dados iniciais
+│ └── factories/ # Factories para testes
+├── public/ # Pasta pública (index.php, assets)
+│ ├── css/ # Estilos CSS compilados
+│ ├── js/ # JavaScript compilado
+│ └── uploads/ # Arquivos enviados pelos usuários
 ├── resources/
-│   ├── views/               # Templates Blade
-│   └── js/                  # Arquivos JavaScript
-├── routes/                  # Rotas da aplicação
-├── public/                  # Assets públicos
-└── tests/                   # Testes automatizados
+│ ├── views/ # Templates Blade
+│ │ ├── components/ # Componentes Blade
+│ │ ├── layouts/ # Layouts principais
+│ │ └── partials/ # Partials reutilizáveis
+│ ├── js/ # JavaScript source
+│ │ └── dashboard.js # Script principal do dashboard
+│ └── lang/ # Localização (i18n)
+├── routes/
+│ ├── web.php # Rotas web
+│ ├── api.php # Rotas API (futuro)
+│ └── console.php # Rotas de console
+├── storage/ # Armazenamento Laravel
+│ ├── app/ # Arquivos da aplicação
+│ ├── framework/ # Framework files
+│ └── logs/ # Logs da aplicação
+├── tests/ # Testes automatizados
+│ ├── Unit/ # Testes unitários
+│ └── Feature/ # Testes de feature
+├── vendor/ # Dependências Composer
+├── .env # Variáveis de ambiente
+├── .env.example # Exemplo de variáveis
+├── artisan # CLI do Laravel
+├── composer.json # Dependências PHP
+├── package.json # Dependências JavaScript
+└── README.md # Este arquivo
 
 ## 🤝 Como Contribuir
 
