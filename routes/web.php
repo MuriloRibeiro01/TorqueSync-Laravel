@@ -31,5 +31,5 @@ Route::prefix('/veiculos')->group(function () {
 Route::prefix('/alugueis')->group(function () {
     Route::post('/', [AluguelController::class, 'store'])->name('aluguel.store');
     Route::get('/{aluguel}', [AluguelController::class, 'show'])->name('aluguel.show');
-    Route::post('/{aluguel}/devolver', [AluguelController::class, 'devolverLocacao'])->name('aluguel.devolver');
+    Route::put('/{aluguel}', [AluguelController::class, 'devolverLocacao'])->name('aluguel.devolver');
 });

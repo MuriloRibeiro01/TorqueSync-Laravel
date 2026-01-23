@@ -1,37 +1,416 @@
-// 1. Defina suas cores personalizadas
-$cinza-chumbo: #1E1E1E;
-$cor-primaria: #0066FF;
-$cor-secundaria: #00B8D9;
-$cor-perigo: #DC3545;
-$cor-info: #0284C7;
-$cor-aviso: #F59E0B;
-$cor-sucesso: #16A34A;
+:root {
+    /* --- PALETA SENNA LEGACY --- */
+    
+    /* Cores de Marca (Hex e RGB) */
+    --senna-red: #FF2B00;
+    --senna-red-rgb: 255, 43, 0;
+    
+    --senna-yellow: #FCD116;
+    --senna-yellow-rgb: 252, 209, 22;
+    
+    --senna-green: #009E60;
+    --senna-green-rgb: 0, 158, 96;
+    
+    --senna-blue: #007BFF;
+    --senna-blue-rgb: 0, 123, 255;
+    
+    /* Cores de Base (Dark Mode) */
+    --track-black: #121212;     
+    --carbon-fiber: #1E1E1E;    
+    --wet-asphalt: #2C2C2C;     
+    --text-primary: #F8F9FA;    
+    --text-secondary: #ADB5BD;
+
+    /* --- SOBRESCRITA DAS VARIÁVEIS DO BOOTSTRAP --- */
+
+    /* Fundo Global */
+    --bs-body-bg: var(--track-black);
+    --bs-body-color: var(--text-primary);
+
+    /* PRIMARY: McLaren Red */
+    --bs-primary: var(--senna-red);
+    --bs-primary-rgb: var(--senna-red-rgb);
+
+    /* SECONDARY: Wet Asphalt (Cinza) */
+    --bs-secondary: var(--wet-asphalt);
+    --bs-secondary-rgb: 44, 44, 44;
+
+    /* SUCCESS: Helmet Green */
+    --bs-success: var(--senna-green);
+    --bs-success-rgb: var(--senna-green-rgb);
+
+    /* WARNING: Senna Yellow */
+    --bs-warning: var(--senna-yellow);
+    --bs-warning-rgb: var(--senna-yellow-rgb);
+
+    /* DANGER: McLaren Red (Mesmo do Primary para erros) */
+    --bs-danger: var(--senna-red);
+    --bs-danger-rgb: var(--senna-red-rgb);
+
+    /* INFO: Nacional Blue */
+    --bs-info: var(--senna-blue);
+    --bs-info-rgb: var(--senna-blue-rgb);
+}
+
+/* --- GARANTIA DE FUNCIONAMENTO (UTILITÁRIOS) --- */
+/* Forçamos as cores para garantir que o !important do Bootstrap não vença */
+
+.bg-primary { background-color: var(--senna-red) !important; }
+.text-primary { color: var(--senna-red) !important; }
+
+.bg-warning { background-color: var(--senna-yellow) !important; color: #000 !important; }
+.text-warning { color: var(--senna-yellow) !important; }
+
+.bg-success { background-color: var(--senna-green) !important; }
+.text-success { color: var(--senna-green) !important; }
+
+.bg-info { background-color: var(--senna-blue) !important; color: #fff !important; }
+.text-info { color: var(--senna-blue) !important; }
+
+.bg-dark { background-color: var(--carbon-fiber) !important; }
+
+
+/* --- ESTILIZAÇÃO ESPECÍFICA (COMPONENTES) --- */
+
+/* Navbar com a linha da McLaren */
+.navbar {
+    background-color: var(--carbon-fiber) !important;
+    border-bottom: 2px solid var(--senna-red);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+}
+
+/* Cards com visual de Fibra de Carbono */
+.card {
+    background: var(--carbon-dark);
+    border: 1px solid #333;
+    border-radius: 4px; /* Menos arredondado = mais técnico */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--senna-red);
+    box-shadow: 0 15px 35px rgba(255, 43, 0, 0.15);
+}
+
+/* Header do Card com Inclinação (Skew) */
+.card-header {
+    background: var(--carbon-light);
+    border-bottom: 2px solid #333;
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 50px;
+    height: 100%;
+    background: var(--senna-red);
+    transform: skewX(-20deg); /* A "manhando" da velocidade */
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* Stat Cards (Indicadores) */
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -2px;
+    color: var(--senna-yellow);
+    text-shadow: 0 0 10px rgba(252, 209, 22, 0.3);
+}
+
+/* Tabelas Racing */
+.table-dark {
+    --bs-table-bg: var(--carbon-fiber);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+    border-color: #333;
+}
+
+.table-dark th {
+    background-color: var(--senna-blue); 
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+// Badges
+.badge {
+    border-radius: 2px;
+    padding: 0.5em 0.8em;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+}
+
+/* Botões Personalizados */
+.btn {
+    border-radius: 0; /* Botões quadrados são mais agressivos em temas racing */
+    text-transform: uppercase;
+    font-weight: 800;
+    font-style: italic;
+    position: relative;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); /* Formato de trapézio inclinado */
+    transition: all 0.2s;
+}
+
+/* Botão de Ação Principal (Ex: Alugar) - Amarelo Senna */
+.btn-primary {
+    background-color: var(--senna-yellow);
+    border-color: var(--senna-yellow);
+    color: #000; 
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 0px;
+    clip-path: xywh(0, 0, 100%, 100%);
+}
+
+.btn-primary:hover {
+    background-color: #e0b800;
+    border-color: #e0b800;
+    color: #000;
+    box-shadow: 0 0 15px rgba(252, 209, 22, 0.4); 
+}
+
+.btn-info, .btn-outline-info {
+    color: white;
+    border-color: var(--senna-blue);
+    background-color: var(--senna-blue);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-info:hover {
+    background-color: #001f4d;
+    box-shadow: 0 0 15px rgba(0, 40, 94, 0.4); 
+}
+
+/* Botão de Perigo/Manutenção */
+.btn-danger, .btn-outline-danger {
+    color: white;
+    border-color: var(--senna-red);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-danger {
+    background-color: var(--senna-red);
+}
+
+.btn-danger:hover {
+    background-color: #cc2200;
+    box-shadow: 0 0 15px rgba(255, 43, 0, 0.4); 
+}
+
+.btn-success {
+    color: white;
+    border-color: var(--senna-green);
+    background-color: var(--senna-green);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn-outline-success {
+    color: var(--senna-green);
+    border-color: var(--senna-green);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* --- BOTÃO TORQUESYNC MINIMALISTA (SÉRIE SENNA) --- */
+.btn-ts {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 2px; /* Espaçamento para ar premium */
+    padding: 5px 5px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    
+    /* Um corte bem sutil apenas em um canto para manter a "rima" racing */
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+}
+
+/* A "Listra de Performance" - Começa invisível */
+.btn-ts::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Largura zero para animar */
+    height: 3px;
+    background: currentColor;
+    transition: width 0.3s ease;
+}
+
+/* --- HOVER: Aceleração Visual --- */
+.btn-ts:hover {
+    letter-spacing: 3px; /* O texto "estica" sutilmente no hover */
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-ts:hover::after {
+    width: 100%; /* A linha corre como um carro na pista */
+}
+
+/* --- VARIANTES DE COR (CIRÚRGICAS) --- */
+
+/* Amarelo Senna - Pole Position */
+.btn-ts-primary {
+    color: var(--senna-yellow);
+    border-left: 2px solid var(--senna-yellow);
+}
+
+.btn-ts-primary-disabled{
+    color: var(--text-secondary);
+    border-left: 2px solid var(--text-secondary);
+    pointer-events: none;
+}
+
+/* Vermelho McLaren - Pit Stop / Perigo */
+.btn-ts-danger {
+    color: var(--senna-red);
+    border-left: 2px solid var(--senna-red);
+}
+
+/* Verde Capacete - Sucesso / Siga */
+.btn-ts-success {
+    color: var(--senna-green);
+    border-left: 2px solid var(--senna-green);
+}
+
+.btn-ts-info {
+    color: var(--senna-blue);
+    border-left: 2px solid var(--senna-blue);
+}
+
+/* --- BOTÃO COM FUNDO (SÓ PARA AÇÕES PRINCIPAIS) --- */
+.btn-ts-solid {
+    background: var(--carbon-light);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-ts-solid:hover {
+    background: var(--text-primary);
+    color: #000;
+}
 
 
 
-// 2. Sobrescreva as variáveis de cores do Bootstrap
-$dark: $cinza-chumbo;
-$primary: $cor-primaria;
-$secondary: $cor-secundaria;
-$danger: $cor-perigo;
-$info: $cor-info;
-$warning: $cor-aviso;
-$success: $cor-sucesso;
+/* Modais */
+.modal-content {
+    background-color: var(--carbon-fiber);
+    border: 1px solid #444;
+    color: var(--text-primary);
+}
 
-// 3. Importe as variáveis do Bootstrap
-@import "node_modules/bootstrap/scss/functions";
-@import "node_modules/bootstrap/scss/variables";
+.modal-header {
+    border-bottom: 1px solid #333;
+}
 
-// 4. Adicione mais cores ao mapa de cores do Bootstrap
-$theme-colors: map-merge(
-  $theme-colors,
-  (
-    "primary": $primary,
-    "success": $success,
-    "dark": $dark,
-    "social": #3b5998
-  )
-);
+.modal-footer {
+    border-top: 1px solid #333;
+}
 
-// 5. Importe o restante do Bootstrap
-@import "node_modules/bootstrap/scss/bootstrap";
+/* Inputs */
+.form-control, .form-select {
+    background-color: var(--wet-asphalt);
+    border: 1px solid #444;
+    color: var(--text-primary);
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--wet-asphalt);
+    color: white;
+    border-color: var(--senna-yellow); 
+    box-shadow: 0 0 0 0.25rem rgba(252, 209, 22, 0.25);
+}
+
+/* Ajuste para o placeholder do input ficar legível no escuro */
+.form-control::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+// Tabela de Veículos em Operação
+.tabela-veiculos-em-operacao th {
+    background-color: var(--track-black); 
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+// Tabela de Clientes
+.tabela-clientes th {
+    background-color: var(--track-black); 
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+// Tabela de veículos
+.tabela-veiculos th {
+    background-color: var(--track-black); 
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border: none;
+    border-bottom: 1px solid white;
+}
+
+// Título do sistema ao lado da logo na navbar
+.span-da-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.25rem;
+}
+
+// Modais
+
+.modal-content {
+    backdrop-filter: blur(5px);
+    border: none;
+    border-top: 4px solid var(--senna-red);
+    border-radius: 0 0 8px 8px;
+    background-color: var(--wet-asphalt);
+}
+
+.modal-content input {
+    border-radius: 0;
+    background-color: var(--wet-asphalt);
+    border: none;
+    border-bottom: 2px solid white;
+    
+}
+
+.modal-header {
+    border: none;
+}

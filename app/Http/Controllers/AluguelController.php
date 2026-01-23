@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\Veiculo;
 use App\Models\Aluguel;
 use Carbon\Carbon;
+use SebastianBergmann\Environment\Console;
 
 class AluguelController extends Controller
 {
@@ -59,18 +60,25 @@ class AluguelController extends Controller
 
         return redirect()->route('home.index')->with('sucesso', 'Veículo alugado com sucesso! Valor total: R$ ' . number_format($dadosValidados['valor_aluguel'], 2, ',', '.'));
     }
-    public function devolverLocacao(Aluguel $aluguel)
+
+    public function devolverLocacao(Aluguel $aluguel, Request $request)
     {
+
         // Pega o Veículo que está "amarrado" a este aluguel
         $veiculo = $aluguel->veiculo; 
 
         if(!$veiculo) {
-            // Se não achar o veículo, retorna um erro JSON (que o 'fetch' entende)
+            // Se não achar o veículo, retorna um erro JSON
             return response()->json(['message' => 'Veículo não encontrado!'], 404);
         }
 
-        // Atualiza o status do VEÍCULO
-        $veiculo->status = 'Disponível'; // Use 'Disponível' (maiúsculo) para bater com seu @if
+        $request->validate(['campoQuilometragem' => 'required|numeric|min:0']);
+
+        $kmAtualizada = [
+            'quilometragem_atual' => $request->input('campoQuilometragem')
+        ];
+
+        $veiculo->status = 'Disponível';
         $veiculo->save();
 
         // Atualiza o status do CLIENTE se ele não tiver mais alugueis ativos
@@ -81,14 +89,13 @@ class AluguelController extends Controller
                 $cliente->status = 'inativo';
                 $cliente->save();
             }
-        }
+        }       
 
-        // Atualiza o ALUGUEL (Fecha a locação)
-        // Usar os dados do modal para atualizar os campos do veículo alugado
         $aluguel->data_devolucao = Carbon::now();
-        // Também salvará a quilometragem final do veículo (dados do modal)
         
         $aluguel->save();
+        
+        $veiculo->update($kmAtualizada);
 
         return redirect()->route('home.index')->with('sucesso', 'Veículo devolvido com sucesso!');
     }

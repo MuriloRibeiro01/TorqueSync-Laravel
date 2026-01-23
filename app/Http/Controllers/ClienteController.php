@@ -20,43 +20,44 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        $dadosSujos = $request->all();
+        // 1. LIMPEZA (Sanitização)
+        // Vamos limpar direto no request para facilitar
+        $input = $request->all();
         
-        if(isset($dadosSujos['cpf_documento'])) {
-            $dadosSujos['cpf_documento'] = preg_replace('/[^0-9]/', '', $dadosSujos['cpf_documento']);
-        }
-        
-        if(isset($dadosSujos['telefone'])) {
-            $dadosSujos['telefone'] = preg_replace('/[^0-9]/', '', $dadosSujos['telefone']);
-        }
-
-        if(isset($dadosSujos['cnh'])) {
-            $dadosSujos['cnh'] = preg_replace('/[^0-9]/', '', $dadosSujos['cnh']);
+        // Remove tudo que não é número desses campos, se eles existirem
+        foreach (['cpf_documento', 'telefone', 'cnh'] as $campo) {
+            if (!empty($input[$campo])) {
+                $input[$campo] = preg_replace('/[^0-9]/', '', $input[$campo]);
+            }
         }
 
-        $request->merge($dadosSujos);
+        // Injeta os dados limpos de volta na requisição
+        $request->merge($input);
 
-        // VALIDAÇÃO
+        // 2. VALIDAÇÃO (O Segurança)
+        // Se falhar aqui, ele volta pra view automaticamente
         $dadosValidados = $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|unique:clientes,email',
-            // Agora validamos os números limpos
             'telefone' => 'required|string|max:20', 
             'endereco' => 'required|string|max:255',
+            // Valida se é único na tabela clientes
             'cpf_documento' => 'required|string|unique:clientes,cpf_documento',
             'cnh' => 'required|string|unique:clientes,cnh',
         ]);
 
-        // DEFINIR STATUS
-        $dadosValidados['status'] = 'inativo';
+        // 3. DEFINIR STATUS (Valor padrão)
+        $dadosValidados['status'] = 'inativo'; // Começa inativo até alugar
 
-        // CRIAÇÃO
+        // 4. CRIAÇÃO
         try {
             Cliente::create($dadosValidados);
             return redirect()->route('home.index')->with('sucesso', 'Cliente cadastrado com sucesso!');
         } catch (\Exception $e) {
-            // Se der erro de banco (ex: duplicidade que passou na validação), pega aqui
-            return redirect()->route('home.index')->with('erro', 'Erro ao salvar no banco: ' . $e->getMessage());
+            // Captura erro de banco (ex: duplicidade que passou, erro de conexão)
+            return redirect()->route('home.index')
+                ->with('erro', 'Erro ao criar cliente: ' . $e->getMessage())
+                ->withInput(); // Devolve os dados para o usuário não digitar tudo de novo
         }
     }
 

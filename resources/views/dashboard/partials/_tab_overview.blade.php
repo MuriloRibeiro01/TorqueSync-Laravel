@@ -45,7 +45,7 @@
     </div>
     
     {{-- Card Manutenção --}}
-    <!--div class="col-xl-3 col-md-6 mb-4">
+    <div class="col-xl-3 col-md-6 mb-4">
         <div class="card bg-dark text-light border-danger h-100">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
@@ -59,7 +59,7 @@
                 </div>
             </div>
         </div>
-    </div-->
+    </div>
     
     {{-- Card Total de Clientes --}}
     <div class="col-xl-3 col-md-6 mb-4">
@@ -83,17 +83,17 @@
     {{-- Tabela de Veículos em Operação (Alugados / Manutenção) --}}
     <h3 class="text-light mb-3">Veículos em Operação</h3>
     <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered table-dark">
+        <table class="table table-striped table-hover table-bordered table-dark tabela-veiculos-em-operacao">
             <thead class="table-dark">
                 <tr>
                     <th>Veículo</th>
                     <th>Valor Total</th>
                     <th>Status</th>
                     <th>Quilometragem</th>
-                    <th>Locador / Detalhe</th>
+                    <th>Locador</th>
                     <th>Data de Devolução</th>
                     <th>Dias Restantes</th>
-                    <th>Ações</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -159,10 +159,14 @@
                             @if($veiculo->status === 'Alugado' && $veiculo->aluguelAtivo)
                                 <button 
                                     type="button" 
-                                    class="btn btn-outline-success btn-devolver-veiculo"
-                                    data-veiculo-id="{{ $veiculo->id }}"
+                                    class="btn-ts btn-ts-success btn-devolver-veiculo"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#devolverVeiculoModal"
                                     data-devolver-url="{{ route('aluguel.devolver', $veiculo->aluguelAtivo->id) }}"
-                                    onsubmit="return confirm('Confirma a devolução deste veículo?')">
+                                    data-km-atual="{{ $veiculo->quilometragem_atual }}"
+                                    data-veiculo-nome="{{ $veiculo->marca }} {{ $veiculo->modelo }}"
+                                    data-fetch-url="{{ route('aluguel.show', $veiculo->aluguelAtivo->id) }}"
+                                    >
                                     Devolução
                                 </button>
                             @else

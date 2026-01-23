@@ -15,13 +15,13 @@
     {{-- NAVEGAÇÃO EM ABAS --}}
     <ul class="nav nav-tabs mb-3" id="dashboardTabs" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active text-info" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Visão Geral</button>
+            <button class="nav-link active text-light" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">Visão Geral</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link text-info" id="veiculos-tab" data-bs-toggle="tab" data-bs-target="#veiculos-tab-pane" type="button" role="tab" aria-controls="veiculos-tab-pane" aria-selected="false">Gerenciar Frota</button>
+            <button class="nav-link text-light" id="veiculos-tab" data-bs-toggle="tab" data-bs-target="#veiculos-tab-pane" type="button" role="tab" aria-controls="veiculos-tab-pane" aria-selected="false">Gerenciar Frota</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link text-info" id="clientes-tab" data-bs-toggle="tab" data-bs-target="#clientes-tab-pane" type="button" role="tab" aria-controls="clientes-tab-pane" aria-selected="false">Gerenciar Clientes</button>
+            <button class="nav-link text-light" id="clientes-tab" data-bs-toggle="tab" data-bs-target="#clientes-tab-pane" type="button" role="tab" aria-controls="clientes-tab-pane" aria-selected="false">Gerenciar Clientes</button>
         </li>
     </ul>
 
@@ -51,5 +51,7 @@
     @include('dashboard.partials._modal_alugar_veiculo')
     @include('dashboard.partials._modal_add_cliente')
     @include('dashboard.partials._modal_edit_cliente')
+    @include('dashboard.partials._modal_devolver_veiculo')
+    
     
 @endsection

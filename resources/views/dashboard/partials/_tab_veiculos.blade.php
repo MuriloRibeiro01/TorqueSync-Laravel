@@ -1,5 +1,9 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-light">Veículos</h1>
+</div>
+
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered table-dark">
+    <table class="table table-dark tabela-veiculos">
         <thead class="table-dark">
             <tr>
                 <th>Marca</th>
@@ -10,7 +14,7 @@
                 <th>Quilometragem</th>
                 <th>Status</th>
                 <th>Valor por Dia</th>
-                <th>Ações</th>
+                <th class="text-end" style="width: 1%; white-space: nowrap;"></th>
             </tr>
         </thead>
         <tbody>
@@ -32,23 +36,9 @@
                         @endif
                     </td>
                     <td>R$ {{ number_format($veiculo->valor_dias, 2, ',', '.') }}</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-info text-light"
-                                data-bs-toggle="modal"
-                                data-bs-target="#editarVeiculoModal"
-                                data-update-url="{{ route('veiculos.update', $veiculo->id) }}"
-                                data-fetch-url="{{ route('veiculos.show', $veiculo->id) }}"
-                                data-veiculo-nome="{{ $veiculo->marca }} {{ $veiculo->modelo }}">
-                            Editar
-                        </button>
-
-                        <form action="{{ Route('veiculos.destroy', $veiculo->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que quer excluir este veículo?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger text-light">Excluir</button>
-                        </form>
+                    <td class="text-nowrap">
                         @if($veiculo->status === 'Disponível')
-                            <button type="button" class="btn btn-sm btn-success text-light btn-alugar-veiculo" 
+                            <button type="button" class="btn-ts btn-ts-primary" 
                             data-veiculo-id="{{ $veiculo->id }}"
                             data-veiculo-nome="{{ $veiculo->marca }} {{ $veiculo->modelo }}"
                             data-bs-toggle="modal"
@@ -57,19 +47,33 @@
                                 Alugar
                             </button>
                         @else
-                            <button type="button" class="btn btn-sm btn-success text-light btn-alugar-veiculo" 
-                            disabled>
+                            <button type="button" class="btn-ts btn-ts-primary-disabled" disabled>
                                 Alugar
                             </button>
                         @endif
+                        
+                        <button type="button" class="btn-ts btn-ts-info"
+                                data-bs-toggle="modal"
+                                data-bs-target="#editarVeiculoModal"
+                                data-update-url="{{ route('veiculos.update', $veiculo->id) }}"
+                                data-fetch-url="{{ route('veiculos.show', $veiculo->id) }}"
+                                data-veiculo-nome="{{ $veiculo->marca }} {{ $veiculo->modelo }}">
+                            Editar
+                        </button>                        
 
-                        <button type="button" class="btn btn-sm btn-warning text-dark btn-mandar-manutencao"
+                        <button type="button" class="btn-ts btn-ts-info"
                         data-veiculo-id="{{ $veiculo->id }}"
                         data-veiculo-nome="{{ $veiculo->marca }} {{ $veiculo->modelo }}"
                         data-bs-toggle="modal"
                         data-bs-target="#enviarManutencaoModal">
                             Manutenção
-                        </button>                        
+                        </button>
+
+                        <form action="{{ Route('veiculos.destroy', $veiculo->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que quer excluir este veículo?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-ts btn-ts-danger">Excluir</button>
+                        </form>
                     </td>
 
                     
@@ -82,5 +86,5 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#adicionarVeiculoModal">Adicionar Veículo</button>
+    <button type="button" class="btn-ts btn-ts-solid btn-ts-primary" data-bs-toggle="modal" data-bs-target="#adicionarVeiculoModal">Adicionar Veículo</button>
 </div>

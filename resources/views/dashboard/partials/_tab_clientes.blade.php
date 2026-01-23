@@ -1,5 +1,10 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="text-light">Clientes</h1>
+</div>
+
+
 <div class="table-responsive">
-    <table class="table table-striped table-hover table-bordered table-dark">
+    <table class="table table-dark tabela-clientes">
         <thead class="table-dark">
             <tr>
                 <th>CPF</th>
@@ -8,7 +13,7 @@
                 <th>E-mail</th>
                 <th>Telefone</th>
                 <th>Endereço</th>
-                <th>Ações</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -21,7 +26,7 @@
                     <td>{{ $cliente->telefone }}</td>
                     <td>{{ $cliente->endereco }}</td>
                     <td>
-                        <button type="button" class="btn btn-sm btn-info"
+                        <button type="button" class="btn-ts btn-ts-info"
                                 data-bs-toggle="modal"
                                 data-bs-target="#editarClienteModal"
                                 data-update-url="{{ route('clientes.update', $cliente->id) }}"
@@ -34,7 +39,7 @@
                         <form action="{{ Route('clientes.destroy', $cliente->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Tem certeza que quer exluir este cliente?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            <button type="submit" class="btn-ts btn-ts-danger">Excluir</button>
                         </form>
                     </td>
                 </tr>
@@ -46,6 +51,6 @@
         </tbody>
     </table>
 
-    <button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#adicionarClienteModal">Adicionar Cliente</button>
+    <button type="button" class="btn-ts btn-ts-solid btn-ts-primary" data-bs-toggle="modal" data-bs-target="#adicionarClienteModal">Adicionar Cliente</button>
 
 </div>

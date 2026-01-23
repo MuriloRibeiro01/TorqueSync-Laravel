@@ -191,6 +191,58 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // ============= Fim do Modal de Alugar Veículo ==============
 
+
+    // ============== Início da Lógica de Devolução do Veículo ==============
+
+    const modalDevolverVeiculo = document.getElementById('devolverVeiculoModal');
+    const botaoDevolverVeiculo = document.getElementById('confirmarDevolucaoBtn');
+    const modalTitle = document.getElementById('tituloModalDevolverVeiculo');
+    const formDevolverVeiculo = document.getElementById('devolverVeiculoForm');
+    
+
+    if (modalDevolverVeiculo && formDevolverVeiculo) {
+        modalDevolverVeiculo.addEventListener('show.bs.modal', async function (event) {
+
+            const button = event.relatedTarget;
+
+            const veiculoNome = button.getAttribute('data-veiculo-nome') || '';
+            const devolverUrl = button.getAttribute('data-devolver-url') || '';
+            const kmDevolucao = button.getAttribute('data-km-atual') || '';
+
+            if (!button) return;
+
+            // Atualiza o título do modal
+            if (modalTitle) {
+                modalTitle.textContent = veiculoNome
+                    ? `Devolver Veículo: ${veiculoNome}`
+                    : 'Devolver Veículo';
+            }
+
+            // Usa a km atual do veículo
+            document.getElementById('campoQuilometragem').value = kmDevolucao;
+
+            // Se a URL de devolução estiver presente, atualiza o action do form
+            if (devolverUrl) devolverVeiculoForm.action = devolverUrl;
+        });
+    }
+
+    // Formata o campo de quilometragem antes de enviar os dados do formulário.
+    formDevolverVeiculo.addEventListener('submit', function(e) {
+        const kmAtualizada = document.getElementById('campoQuilometragem');
+        if (kmAtualizada && kmAtualizada.value) {
+            let kmValue = kmAtualizada.value;
+            kmValue = kmValue.toString().replace(/\./g, '');
+            kmValue = kmValue.replace(',', '.');
+            kmAtualizada.value = kmValue;
+        }
+    });
+    
+    // ============== Fim da Lógica de DEVOLUÇÃO ==============
+
+
+
+
+
     // ============== Início do Botão de Editar Cliente ==============
     const editarClienteModal = document.getElementById('editarClienteModal');
     const formEditCliente = document.getElementById('formEditCliente');
@@ -400,51 +452,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ============== Início da Lógica de DEVOLUÇÃO ==============
-
-    // Pega o Token CSRF que colocamos no <head>
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-    const botoesDevolver = document.querySelectorAll('.btn-devolver-veiculo');
-
-    botoesDevolver.forEach(button => {
-        button.addEventListener('click', async function () {
-
-            // Pega a URL que foi montada
-            const devolverUrl = this.getAttribute('data-devolver-url');
-
-            if(!devolverUrl) return;
-
-            // Feedback visual para o usuário
-            this.innerHTML = 'Processando...';
-            this.disabled = true;
-
-            try {
-                const response = await fetch(devolverUrl, {
-                    method: 'POST',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(data.message || 'Erro ao processar a devolução.');
-                }
-
-                // Sucesso
-                window.location.reload();
-            } catch (error) {
-                console.error(error);
-                alert('Erro: ' + error.message);
-                this.innerHTML = 'Devolução'; // Restaura o botão em caso de erro.
-                this.disabled = false;
-            }
-        });
-    });
-    // ============== Fim da Lógica de DEVOLUÇÃO ==============
+    
 
     
 
 });
+

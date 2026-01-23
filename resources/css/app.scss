@@ -1,7 +1,10 @@
 // Importanto TODO o CSS do Bootstrap.
+@import 'resources/css/theme.scss';
 @import 'bootstrap/scss/bootstrap';
+
 
     #dashboardTabs .nav-link.active {
         font-weight: 700;
         color: #0066FF;
     }
+
